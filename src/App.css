@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+/* ------------------- *\
+Globel;
+\* ------------------- */
+@layer base{
+    *{
+        @apply relative
+        /* border border-black */
+    }
+    body{
+        @apply font-['Arial']
+    }
+}
+
+/* ------------------- *\
+Layout
+\* ------------------- */
+.container-mid {
+    @apply w-[75%] max-lg:w-[90%] max-md:w-[98%] mx-auto px-4 
+}
+
+.row {
+    @apply mx-[-16px]
+}
+
+@layer utilities {
+    .gap-rwd {
+        gap: clamp(24px, 3vw, 32px);
+    }
+}
+
+/* ------------------- *\
+Conponent
+\* ------------------- */
+
+/* background */
+@layer components {
+    .bg-cover-set {
+        @apply bg-cover bg-no-repeat bg-center
+    }
+    .bg-contain-set {
+        @apply bg-contain bg-no-repeat bg-center
+    }
+}
+
+/* font */
+@layer utilities {
+    .indie-flower-regular {
+        font-family: "Indie Flower", cursive;
+        font-weight: 400;
+        font-style: normal;
+      }
+}
+
+/* position */
+@layer components {
+    .absolute-mid {
+        @apply m-0 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+    }
+}
+
