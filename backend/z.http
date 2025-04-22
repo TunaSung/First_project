@@ -1,0 +1,84 @@
+### 測試登入 API
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "test@example.com",
+    "password": "123456"
+}
+
+###
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "newuser@example.com",
+    "password": "mypassword"
+}
+
+### 測試註冊 API
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "email": "ytsung99@email.com",
+    "password": "123456"
+}
+
+### 測試獲取商品列表
+GET http://localhost:5000/api/cart
+Content-Type: application/json
+
+### 測試購物車
+POST http://localhost:5000/api/cart/add
+Content-Type: application/json
+
+{
+    "productId": 16,
+    "amount":6
+}
+
+###
+DELETE http://localhost:5000/api/cart/remove
+Content-Type: application/json
+
+{
+    "productId": 28
+}
+
+### Create Payment Request
+POST http://localhost:5000/api/payment/create-payment
+Content-Type: application/x-www-form-urlencoded
+
+{
+  "orderId": "order1234",
+  "totalAmount": 250,
+  "itemList": [
+    {
+      "name": "Wireless Bluetooth Headphones",
+      "price": 99,
+      "quantity": 1
+    },
+    {
+      "name": "Smart Watch",
+      "price": 150,
+      "quantity": 1
+    }
+  ]
+}
+
+### Create Payment
+POST http://localhost:5000/api/payment/create_payment
+Content-Type: application/x-www-form-urlencoded
+
+TotalAmount=100&ItemName=Test%20Product
+
+###
+POST https://e1d4-2402-7500-a6a-92bc-683d-b45f-67a2-5569.ngrok-free.app/api/payment/callback
+Content-Type: application/x-www-form-urlencoded
+
+{
+  "MerchantTradeNo": "TEST123456789",
+  "RtnCode": "1",
+  "RtnMsg": "OK"
+}
