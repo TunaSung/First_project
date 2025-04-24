@@ -6,6 +6,7 @@ const authRoutes = require("./routes/authRoutes");
 const productRoutes = require("./routes/productRoutes")
 const cartRoutes = require("./routes/cartRoutes")
 const paymentRoutes = require("./routes/paymentRoutes")
+const eventRoutes = require("./routes/eventRoutes")
 const path = require("path");
 
 const app = express();
@@ -22,6 +23,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/product", productRoutes);
 
 app.use("/api/cart", cartRoutes);
+
+app.use("/api/event", eventRoutes);
 
 app.use('/api/payment', bodyParser.urlencoded({ extended: true }));
 app.use('/api/payment', bodyParser.json());

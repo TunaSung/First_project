@@ -13,6 +13,12 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import { useEffect } from "react";
 import { setAuthHeader } from "./service/authService";
 
+// 關掉網頁後會自動登出
+window.addEventListener("beforeunload", () => {
+  localStorage.removeItem("token");
+});
+
+
 // 這個函數用來根據當前路由動態渲染不同的Navbar
 function DynamicNavbar() { 
   const location = useLocation();

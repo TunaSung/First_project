@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaPlus, FaMinus } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import Btn from "../components/UI/Btn";
 import { useParams } from "react-router-dom";
 import { productById } from "../service/productService";
@@ -11,7 +12,9 @@ function ProductItem () {
     const {id} = useParams();
     const [product, setProduct] = useState(null);
     const [amount, setAmount] = useState(1);
-    const [errorMessage, setErrorMessage] = useState("");
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -25,6 +28,12 @@ function ProductItem () {
         fetchProduct();
     }, [id]);
 
+    useEffect(() => {
+            // 檢查 localStorage 是否有 token，來判斷使用者是否已登入
+            const token = localStorage.getItem("token");
+            setIsAuthenticated(!!token);
+    }, []);
+
     const tagglePlus = () => {
         setAmount(amount+1)
     }
@@ -35,11 +44,16 @@ function ProductItem () {
     }
 
     const handleAddToCart = async () => {
-        try {
-            await addToCart(id, amount); // 調用 addToCart 服務將商品加入購物車
-            alert("商品已加入購物車！");
-        } catch (error) {
-            console.error("加入購物車失敗", error);
+        if (!isAuthenticated) {
+            alert("Login first!")
+            navigate("/sign-in"); // ✅ 若未登入，跳轉到登入頁面
+        } else {
+            try {
+                await addToCart(id, amount); // 調用 addToCart 服務將商品加入購物車
+                alert("商品已加入購物車！");
+            } catch (error) {
+                console.error("加入購物車失敗", error);
+            }
         }
     };
 

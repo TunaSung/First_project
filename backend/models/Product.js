@@ -12,7 +12,8 @@ Product.init(
     price: {type:DataTypes.INTEGER, allowNull:false},
     stock: {type:DataTypes.INTEGER, allowNull:false},
     imageUrl: { type: DataTypes.STRING },
-    category: {type:DataTypes.STRING,allowNull:false}
+    category: {type:DataTypes.STRING,allowNull:false},
+    sales: {type:DataTypes.INTEGER, defaultValue:0}
     },
     {sequelize: sqlize, modelName:'product', tableName:'products'}
 )
