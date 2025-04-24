@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { updateCartItemQuantity, removeCartItem } from "../../service/cartService"
+import winter from '../../assets/images/winter.jpg';
 
 function CartItem({name, price, itemAmount, id, onAmountChange, onClickChange, isChecked}){
 
@@ -48,7 +49,7 @@ function CartItem({name, price, itemAmount, id, onAmountChange, onClickChange, i
             <div id="container" className="mt-4 w-full border py-4 pl-10 grid grid-cols-[4fr_1fr_1fr_1fr_1fr] items-center">
                 <div className="flex items-center">
                     <input onClick={handleChecked} type="checkbox" id="cart-item" className="mr-3 scale-150"/>
-                    <a href="#!" className="w-20 aspect-square bg-[url('./src/assets/images/winter.jpg')] bg-cover-set mr-3" />
+                    <a href="#!" className="w-20 aspect-square bg-cover-set mr-3" style={{backgroundImage: `url(${winter})`}}/>
                     <a href="#!">
                         <label htmlFor="cart-item">
                             <h3 id="cart-item-title" className="border max-w-50 line-clamp-2">{name}</h3>

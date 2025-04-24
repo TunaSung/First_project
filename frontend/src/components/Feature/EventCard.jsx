@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import winter from '../../assets/images/winter.jpg';
 function EventCard(props){
     return(
         <div>
@@ -10,7 +10,8 @@ function EventCard(props){
                 className="w-full aspect-[4/3] border-10 rounded-md max-lg:border-6 max-md:border-4 border-[#fff] group-hover:border-0 transition-all origin-center duration-400"
                 >
                     <div id="img" 
-                    className="bg-[url('./src/assets/images/winter.jpg')] rounded-md bg-cover-set w-full absolute inset-0 "
+                    className="rounded-md bg-cover-set w-full absolute inset-0 "
+                    style={{backgroundImage: `url(${winter})`}}
                     />
                 </div>
                 <h1 className="m-0 text-2xl line-clamp-1 leading-loose group-hover:line-clamp-2 group-hover:leading-snug">Laset event title title title</h1>
