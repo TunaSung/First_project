@@ -1,11 +1,9 @@
-import axios from "axios";
-
-const API_URL = `${import.meta.env.VITE_API_URL}/api/cart`; 
+import api from "./api";
 
 // 取得購物車內容
 export const fetchCart = async () => {
     try {
-        const response = await axios.get(`${API_URL}`); 
+        const response = await api.get(`/cart`); 
         
         return response.data;
 
@@ -27,7 +25,7 @@ export const fetchCart = async () => {
 // 加入商品到購物車
 export const addToCart = async (productId, amount) => {
     try {
-        const response = await axios.post(`${API_URL}/add`, { productId, amount });
+        const response = await api.post(`/cart/add`, { productId, amount });
         return response.data; 
     } catch (error) {
         console.error("加入購物車失敗", error.message);
@@ -40,7 +38,7 @@ export const addToCart = async (productId, amount) => {
 // 更新購物車商品數量
 export const updateCartItemQuantity = async (productId, stock) => {
     try {
-        const response = await axios.post(`${API_URL}/update`, { productId, stock });
+        const response = await api.post(`/cart/update`, { productId, stock });
         return response.data;
     } catch (error) {
         console.error("更新購物車商品數量失敗", error.message);
@@ -51,7 +49,7 @@ export const updateCartItemQuantity = async (productId, stock) => {
 // 刪除購物車商品
 export const removeCartItem = async (productId) => {
     try {
-        const response = await axios.delete(`${API_URL}/remove`, { data: { productId } });
+        const response = await api.delete(`/cart/remove`, { data: { productId } });
         return response.data; // 返回後端的回應
     } catch (error) {
         console.error("刪除購物車商品失敗", error.message);

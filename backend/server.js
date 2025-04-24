@@ -12,15 +12,7 @@ const path = require("path");
 
 const app = express();
 
-const allowedOrigins = (process.env.CORS_ORIGINS || "http://localhost:5173")
-  .split(",");
-app.use(cors({
-  origin: allowedOrigins,
-  credentials: true,
-}));
-
-const isProd = process.env.NODE_ENV === "production";
-
+app.use(cors({ origin: process.env.CORS_ORIGINS?.split(",") || "*" }));
 
 app.use(express.json());
 
@@ -40,7 +32,7 @@ sqlize.sync().then(() => {
     console.log("📦 資料庫已同步");
 });
 
-if (isProd) {
+if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
   app.get("*", (req, res) =>
     res.sendFile(path.join(__dirname, "../frontend/dist/index.html"))
