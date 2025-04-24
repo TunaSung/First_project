@@ -10,12 +10,12 @@ const eventRoutes = require("./routes/eventRoutes")
 const path = require("path");
 
 const app = express();
+
+const allowedOrigins = (process.env.CORS_ORIGINS || "http://localhost:5173")
+  .split(",");
 app.use(cors({
-    origin: [
-        'http://localhost:5173',
-        'https://firstproject-production-e6ff.up.railway.app'
-      ], // 允許的前端網址 (Vite 預設)
-    credentials: true, // 允許 cookie 傳遞 (如果有 session 機制)
+  origin: allowedOrigins,
+  credentials: true,
 }));
 
 
