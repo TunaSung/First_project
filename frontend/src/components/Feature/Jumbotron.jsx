@@ -1,5 +1,5 @@
-import hunter from '../../assets/images/hunter.jpg';
-import winter from '../../assets/images/winter.jpg';
+import hunter from '../../../public/images/hunter.jpg';
+import winter from '../../../public/images/winter.jpg';
 
 function  Jumbotron(){
     return(

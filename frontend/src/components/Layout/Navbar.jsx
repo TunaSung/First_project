@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import logo from "../../assets/images/logo.png"; // 引入 logo 圖片
+import logo from "../../../public/images/logo.png"; // 引入 logo 圖片
 
 function Navbar() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);

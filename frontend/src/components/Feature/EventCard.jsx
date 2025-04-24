@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import winter from '../../assets/images/winter.jpg';
+import winter from '../../../public/images/winter.jpg';
 function EventCard(props){
     return(
         <div>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { updateCartItemQuantity, removeCartItem } from "../../service/cartService"
-import winter from '../../assets/images/winter.jpg';
+import winter from '../../../public/images/winter.jpg';
 
 function CartItem({name, price, itemAmount, id, onAmountChange, onClickChange, isChecked}){
 

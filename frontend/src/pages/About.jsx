@@ -1,7 +1,7 @@
 import Hero from "../components/Layout/HeroNarrow"
 import ImgContainer from "../components/UI/ImgContainer"
 import FadeInSection from '../components/UI/FadeInSection'
-import hunter from '../assets/images/hunter.jpg'
+import hunter from '../../public/images/hunter.jpg'
 
 function About(){
     

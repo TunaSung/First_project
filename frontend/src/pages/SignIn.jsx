@@ -2,9 +2,9 @@ import SignInForm from "../components/Feature/SignInForm"
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion";
 import Register from "../components/Feature/Register"
-import winter from '../assets/images/winter.jpg'
-import winter2 from '../assets/images/winter2.jpg'
-import kami from '../assets/images/kami.jpg'
+import winter from '../../public/images/winter.jpg'
+import winter2 from '../../public/images/winter2.jpg'
+import kami from '../../public/images/kami.jpg'
 
 function SignIn(){
 

@@ -1,4 +1,4 @@
-import winter from '../assets/images/winter.jpg';
+import winter from '../../public/images/winter.jpg';
 
 function Event(){
     return(
