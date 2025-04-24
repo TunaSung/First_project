@@ -87,16 +87,11 @@ function Cart(){
             .filter(item => selectedItems.has(item.product.productId))
             .map(item => `${item.product.name} $${item.product.price}*${item.amount}`)
             .join('#');
-        
-            console.log("娟我好想你");
         try {
             // 呼叫 createPayment 來處理支付流程
             const paymentFormHtml = await createPayment(totalPrice, selectedProductNames);
-            console.log("跑到這了");
 
             await toggleStatus(idsArray)
-
-            console.log("現在在這");
     
             // 動態創建表單並插入到頁面
             const formContainer = document.createElement('div');
