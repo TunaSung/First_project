@@ -1,6 +1,7 @@
 import Hero from "../components/Layout/HeroNarrow"
 import ImgContainer from "../components/UI/ImgContainer"
 import FadeInSection from '../components/UI/FadeInSection'
+import hunter from '../assets/images/hunter.jpg'
 
 function About(){
     
@@ -27,7 +28,7 @@ function About(){
                                 Quia eum adipisci at facilis laborum incidunt nulla unde ab pariatur quis vero impedit cupiditate, obcaecati, perferendis ipsum voluptate consequuntur a ut dolorum? Cumque cupiditate minima natus quos voluptas dolor!
                             </p>
                         </div>
-                        <ImgContainer img="hunter.jpg"/>
+                        <ImgContainer img={hunter}/>
                     </div>
                 </div>
             </Hero>
@@ -39,7 +40,7 @@ function About(){
                     <div id="container" className="container-mid flex justify-center items-center">
                         <div id="row" className="grid grid-cols-2 gap-rwd items-center max-md:grid-cols-1">
                             <div className="order-2">
-                                <ImgContainer img="hunter.jpg" />
+                                <ImgContainer img={hunter} />
                             </div>
                             <div id="about-preview" className="order-3 max-md:order-1">
                                 <h3 id="title" className="text-[32px] text-[#333] font-bold mt-10 mb-6 flex items-center">Title</h3>
@@ -66,7 +67,7 @@ function About(){
                                         Quia eum adipisci at facilis laborum incidunt nulla unde ab pariatur quis vero impedit cupiditate, obcaecati, perferendis ipsum voluptate consequuntur a ut dolorum? Cumque cupiditate minima natus quos voluptas dolor!
                                     </p>
                                 </div>
-                                <ImgContainer img="hunter.jpg"/>
+                                <ImgContainer img={hunter}/>
                             </div>
                         </div>
                     </FadeInSection>
