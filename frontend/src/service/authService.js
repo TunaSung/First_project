@@ -51,7 +51,7 @@ export const setAuthHeader = () => {
     const token = localStorage.getItem('token'); // 從 localStorage 取出 token
 
     if (token) {
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`; // 設定 Authorization 標頭
+        api.defaults.headers.common['Authorization'] = `Bearer ${token}`; // 設定 Authorization 標頭
     }
 };
 
