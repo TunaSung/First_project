@@ -42,9 +42,11 @@ sqlize.sync().then(() => {
 });
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+  const staticPath = path.join(__dirname, "../frontend/dist");
+  console.log("🔍 會從這裡 serve 靜態檔案：", staticPath);
+  app.use(express.static(staticPath));
   app.get("*", (req, res) =>
-    res.sendFile(path.join(__dirname, "../frontend/dist/index.html"))
+    res.sendFile(path.join(staticPath, "index.html"))
   );
 }
 
