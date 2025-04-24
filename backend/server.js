@@ -19,6 +19,8 @@ app.use(cors({
   credentials: true,
 }));
 
+const isProd = process.env.NODE_ENV === "production";
+
 
 app.use(express.json());
 
@@ -38,14 +40,12 @@ sqlize.sync().then(() => {
     console.log("📦 資料庫已同步");
 });
 
-// —— 1. 靜態檔案：把前端 build 好的 dist 夾當靜態資源 —— 
-//    __dirname 是指到 backend 資料夾，所以要往上一層再進 frontend/dist
-app.use(express.static(path.join(__dirname, "../frontend/dist")));
-
-// —— 2. Catch‑all：其餘路由都返回 index.html 給前端 Router 用 —— 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
-});
+if (isProd) {
+  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+  app.get("*", (req, res) =>
+    res.sendFile(path.join(__dirname, "../frontend/dist/index.html"))
+  );
+}
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
