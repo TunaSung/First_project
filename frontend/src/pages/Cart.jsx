@@ -104,6 +104,7 @@ function Cart(){
     
             // 獲取表單並提交
             const form = formContainer.querySelector('form');
+            form.setAttribute('target', '_blank');
             document.body.appendChild(form); // 插入到頁面
             form.submit(); // 提交表單，跳轉到綠界支付頁面
         } catch (error) {

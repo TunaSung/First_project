@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/payment";
+const API_URL = `${import.meta.env.VITE_API_URL}/api/payment`; 
 
 // 定義一個函數來調用後端支付 API
 export const createPayment = async (totalAmount, itemName) => {

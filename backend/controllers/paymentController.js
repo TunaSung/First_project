@@ -8,6 +8,7 @@ const options = require("../adapters/ecpay/ECPAY_Payment_node_js/conf/config-exa
 const { HashKey, HashIV } = options.MercProfile;
 const {Op} = require("sequelize")
 const create = new ECPAY(options);
+require('dotenv').config();
 
 // 格式化日期
 const formatDate = (date) => {
@@ -95,7 +96,7 @@ exports.createPaymentForm = async (req, res) => {
     TotalAmount, // 總金額，來自前端傳遞
     TradeDesc: "購物車結帳",
     ItemName, // 商品名稱，來自前端傳遞
-    ReturnURL: 'https://fb33-2402-7500-a58-83e2-35fe-91a7-79e2-2226.ngrok-free.app/api/payment/callback' // ngrok的網址
+    ReturnURL: `${process.env.ECPAY_RETURN_URL}/api/payment/callback` // ngrok的網址
   };
 
   try {

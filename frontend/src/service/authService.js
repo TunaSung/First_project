@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/auth"; // 後端 API 路徑
+const API_URL = `${import.meta.env.VITE_API_URL}/api/auth`; // 後端 API 路徑
 
 
 // 在其他請求中附加 token
