@@ -4,10 +4,10 @@ require('dotenv').config();
 const bodyParser = require('body-parser');
 const sqlize = require("./config/database");
 const authRoutes = require("./routes/authRoutes");
-const productRoutes = require("./routes/productRoutes")
-const cartRoutes = require("./routes/cartRoutes")
-const paymentRoutes = require("./routes/paymentRoutes")
-const eventRoutes = require("./routes/eventRoutes")
+const productRoutes = require("./routes/productRoutes");
+const cartRoutes = require("./routes/cartRoutes");
+const paymentRoutes = require("./routes/paymentRoutes");
+const eventRoutes = require("./routes/eventRoutes");
 const path = require("path");
 
 const app = express();
