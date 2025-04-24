@@ -12,7 +12,16 @@ const path = require("path");
 
 const app = express();
 
-app.use(cors({ origin: process.env.CORS_ORIGINS?.split(",") || "*" }));
+const origins = (process.env.CORS_ORIGINS || "http://localhost:5173")
+  .split(",");
+
+// 2. 設定 cors options
+const corsOptions = {
+  origin: origins,
+  credentials: true,           // ← 這行會讓 res header 帶上 Access-Control-Allow-Credentials: true
+};
+app.use(cors(corsOptions));     // 全域套用
+app.options("*", cors(corsOptions)); // preflight 也套一次
 
 app.use(express.json());
 

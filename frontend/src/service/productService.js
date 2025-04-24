@@ -1,7 +1,5 @@
 import api from "./api";
 
-const API_URL = `${import.meta.env.VITE_API_URL}/api/product`; 
-
 export const products = async () => {
     try {
         const response = await api.get(`/product/products`);
