@@ -1,3 +1,5 @@
+import winter from '../assets/images/winter.jpg';
+
 function Event(){
     return(
         <div id="event">
@@ -8,7 +10,7 @@ function Event(){
             <div id="container" className="container-mid flex flex-col justify-center items-center">
 
                 {/* Start img */}
-                <img src="./src/assets/images/winter.jpg" className="w-200 mt-15 mb-5" />
+                <img src={winter} className="w-200 mt-15 mb-5" />
                 {/* End img */}
                     
                     
