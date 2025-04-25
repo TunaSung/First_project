@@ -5,7 +5,6 @@ import Btn from "../components/UI/Btn";
 import { useParams } from "react-router-dom";
 import { productById } from "../service/productService";
 import { addToCart } from "../service/cartService"
-import kami from '../../public/images/kami.jpg'
 import 'ldrs/dotStream'
 
 function ProductItem () {
@@ -81,7 +80,7 @@ function ProductItem () {
 
                     {/* Start item img */}
                     <div className="flex justify-center items-center">
-                        <div id="item-img" className="w-100 aspect-square bg-cover-set" style={{backgroundImage: `url(${kami})`}} />
+                        <div id="item-img" className="w-100 aspect-square bg-[url('../../images/kami.jpg')] bg-cover-set" />
                     </div>
                     {/* End item img */}
 

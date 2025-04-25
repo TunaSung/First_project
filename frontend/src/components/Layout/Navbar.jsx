@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import logo from "../../../public/images/logo.png"; // 引入 logo 圖片
 
 function Navbar() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -22,7 +21,7 @@ function Navbar() {
         <div id="navbar" className="w-full py-2 bg-black/40 flex items-center z-10">
             <div id="container" className="container-mid">
                 <div id="row" className="row grid grid-cols-2 justify-between gap-rwd">
-                    <Link to="/" id="brand" className="w-40 h-16 bg-cover-set" style={{backgroundImage: `url(${logo})`}} />
+                    <Link to="/" id="brand" className="w-40 h-16 bg-[url('../../../images/logo.png')] bg-cover-set" />
                     <ul className="gap-rwd flex items-center justify-end">
                         {["About", "Product", "Cart"].map((item) => (
                             <li key={item} className="text-center">
