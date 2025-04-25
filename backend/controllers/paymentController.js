@@ -20,12 +20,9 @@ const formatDate = (date) => {
   )}`;
 };
 
-let base_param = null // 這裡的 base_param 是一個全域變數，用來存放 ECPay 的基本參數
-// 這個參數會在 createPaymentForm 函式中被初始化，然後在 createPaymentForm 函式中使用，並且讓 paymentStatus 也能使用到這個參數
-
 //更改資order跟pios的狀態
 exports.paymentStatus = [authenticate, async (req, res) => {
-    const {ids} = req.body;
+    const {ids, MerchantTradeNo} = req.body;
     const userId = req.user.userId
     // const userId = req.user?.userId || 1
     try {
@@ -41,7 +38,7 @@ exports.paymentStatus = [authenticate, async (req, res) => {
         return res.status(404).send("No pending order to pay for");
       };
   
-      order.merchantTradeNo = base_param.MerchantTradeNo;
+      order.merchantTradeNo = MerchantTradeNo;
       await order.save();
       
       await ProductInOrder.update(

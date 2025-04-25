@@ -21,9 +21,9 @@ export const createPayment = async (totalAmount, itemName) => {
 };
 
 // 更改 status 用的，用JSON格式所以和和上面的先區隔開來，但好像也可以寫在一起
-export const toggleStatus = async (ids) => {
+export const toggleStatus = async (ids, MerchantTradeNo) => {
   try {
-    const response = await api.post(`/payment/toggle_status`, {ids});
+    const response = await api.post(`/payment/toggle_status`, {ids, MerchantTradeNo});
     return response.data;
   } catch (error) {
     console.error('Error toggling status:', error);

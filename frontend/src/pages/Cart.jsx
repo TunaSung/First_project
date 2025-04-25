@@ -91,15 +91,19 @@ function Cart(){
             // 呼叫 createPayment 來處理支付流程
             const paymentFormHtml = await createPayment(totalPrice, selectedProductNames);
 
-            await toggleStatus(idsArray)
-    
+            
             // 動態創建表單並插入到頁面
             const formContainer = document.createElement('div');
             formContainer.innerHTML = paymentFormHtml;
-    
-            // 獲取表單並提交
+            
+            // 抓出 hidden input 的 MerchantTradeNo
             const form = formContainer.querySelector('form');
-            form.setAttribute('target', '_blank');
+            const tradeNoInput = form.querySelector('input[name="MerchantTradeNo"]');
+            const merchantTradeNo = tradeNoInput.value;
+            await toggleStatus(idsArray, merchantTradeNo)
+
+            
+            form.setAttribute('target', '_blank'); // 讓表單跳至新分頁
             document.body.appendChild(form); // 插入到頁面
             form.submit(); // 提交表單，跳轉到綠界支付頁面
         } catch (error) {
