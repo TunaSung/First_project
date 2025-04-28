@@ -11,6 +11,7 @@ function Cart(){
     const [selectedItems, setSelectedItems] = useState(new Set());
     const [totalPrice, setTotalPrice] = useState(0); // 用來存儲購物車總價格
     const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+    const [selectAll, setSelectAll] = useState(false);
     const isLoggedIn = localStorage.getItem("token"); // ✅ 從 localStorage 取得登入狀態
 
 
@@ -38,6 +39,7 @@ function Cart(){
     const handleAmountChange = async () => {
         const cartDic = await fetchCart(); // 重新呼叫後端 API 獲取購物車內容
         const items = cartDic.order.pios;
+        setCartItems(items); // 確保 cartItems 是最新的
         
         const total = items.reduce((sum, item) => {
             if (selectedItems.has(item.product.productId)) {
@@ -49,26 +51,21 @@ function Cart(){
     };
 
     const handleCheckChange = async (isChecked, productId) => {
-        const cartDic = await fetchCart(); // 重新呼叫後端 API 獲取購物車內容
-        const items = cartDic.order.pios;
+        const updated = new Set(selectedItems)
+        if (isChecked) updated.add(productId)
+        else updated.delete(productId)
 
-        // 使用 Set 儲存已選中的商品 productId
-        const updatedSelectedItems = new Set(selectedItems);
-        if (isChecked) {
-            updatedSelectedItems.add(productId); // 如果勾選，將 productId 加入 Set
-        } else {
-            updatedSelectedItems.delete(productId); // 如果取消勾選，將 productId 從 Set 中移除
-        }
-        setSelectedItems(updatedSelectedItems); // 更新 selectedItems Set
+        setSelectedItems(updated)
+        // 如果全部勾完，header 也要打勾
+        setSelectAll(updated.size === cartItems.length)
 
-        // 重新計算總金額，只計算勾選的商品
-        const updatedTotal = items.reduce((sum, item) => {
-            if (updatedSelectedItems.has(item.product.productId)) {
-                return sum + item.product.price * item.amount;
-            }
-            return sum;
-        }, 0);
-        setTotalPrice(updatedTotal); // 更新總金額
+        // 用 current cartItems 跑一次總價
+        const total = cartItems.reduce((sum, item) => {
+            return updated.has(item.product.productId)
+            ? sum + item.product.price * item.amount
+            : sum
+        }, 0)
+        setTotalPrice(total)
     };
 
     const handlePayment = async () => {
@@ -115,6 +112,24 @@ function Cart(){
         }
     };
 
+    const handleSelectAllChange = (isChecked) => {
+        setSelectAll(isChecked);
+        if (isChecked) {
+          // 把所有商品 id 都加入 Set
+          const allIds = cartItems.map(item => item.product.productId);
+          const newSet = new Set(allIds);
+          setSelectedItems(newSet);
+          // 全選時計算一次總價
+          const total = cartItems.reduce((sum, item) => sum + item.product.price * item.amount, 0);
+          setTotalPrice(total);
+        } else {
+          // 取消全選就清空
+          setSelectedItems(new Set());
+          setTotalPrice(0);
+        }
+      };
+    
+
     return (
         <div id="cart">
 
@@ -132,7 +147,15 @@ function Cart(){
 
                 {/* Start subtitle */}
                 <div id="classification" className="border w-full pl-10 py-4 mt-15 grid grid-cols-[4fr_1fr_1fr_1fr_1fr]">
-                    <div></div> {/*本來想做一個全選功能，之後想做再用*/ }
+                    <div>
+                        <input
+                            type="checkbox"
+                            checked={selectAll}
+                            onChange={e => handleSelectAllChange(e.target.checked)}
+                            className="mr-3 scale-150"
+                        />
+                        Select/Deselect All
+                    </div>
                     <h3 className="text-center">Price</h3>
                     <h3 className="text-center">Quantity</h3>
                     <h3 className="text-center">Total</h3>
@@ -144,7 +167,7 @@ function Cart(){
                 {/* Start cart item */}
                 <div id="cart-item" className="w-full ">
                     {cartItems.map((item, index) => (
-                        <CartItem key={item.id} id={item.product.productId} name={item.product.name} price={item.product.price} itemAmount={item.amount} onAmountChange={handleAmountChange} onClickChange={handleCheckChange} isChecked={selectedItems.has(item.product.productId)}/> //
+                        <CartItem key={item.id} id={item.product.productId} name={item.product.name} price={item.product.price} stock={item.product.stock} itemAmount={item.amount} onAmountChange={handleAmountChange} onClickChange={handleCheckChange} isChecked={selectedItems.has(item.product.productId)}/> //
                     ))}
                 </div>
                 {/* End cart item */}
@@ -152,7 +175,15 @@ function Cart(){
                 
                 {/* Start total price */}
                 <div id="classification" className="border w-full pl-10 pr-3 py-1 mt-5 flex justify-between">
-                    <div></div>{/*本來想做一個全選功能，之後想做再用*/ }
+                    <div className="flex items-center">
+                        <input
+                            type="checkbox"
+                            checked={selectAll}
+                            onChange={e => handleSelectAllChange(e.target.checked)}
+                            className="mr-3 scale-150"
+                        />
+                        Select/Deselect All
+                    </div>
                     <div className="flex items-center gap-2">
                         <h4>Total price:</h4>
                         <h3 className="text-red-600">${totalPrice}</h3>
