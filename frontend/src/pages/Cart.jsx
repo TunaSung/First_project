@@ -106,6 +106,7 @@ function Cart(){
             form.setAttribute('target', '_blank'); // 讓表單跳至新分頁
             document.body.appendChild(form); // 插入到頁面
             form.submit(); // 提交表單，跳轉到綠界支付頁面
+            navigate("/") // 跳轉到首頁
         } catch (error) {
             console.error("支付失敗", error);
             alert("支付過程中出錯，請稍後再試");

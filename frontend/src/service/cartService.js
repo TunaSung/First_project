@@ -36,9 +36,9 @@ export const addToCart = async (productId, amount) => {
 
 
 // 更新購物車商品數量
-export const updateCartItemQuantity = async (productId, stock) => {
+export const updateCartItemQuantity = async (productId, amount) => {
     try {
-        const response = await api.post(`/cart/update`, { productId, stock });
+        const response = await api.post(`/cart/update`, { productId, amount });
         return response.data;
     } catch (error) {
         console.error("更新購物車商品數量失敗", error.message);
