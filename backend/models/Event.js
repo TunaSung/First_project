@@ -8,7 +8,9 @@ Event.init(
     eventId: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     title: {type: DataTypes.STRING, allowNull: false},
     description: {type:DataTypes.STRING},
-    imageUrl: { type: DataTypes.STRING }
+    imageUrl: { type: DataTypes.STRING },
+    startDate: { type: DataTypes.DATE, allowNull: false },
+    endDate: { type: DataTypes.DATE, allowNull: false },
     },
     {sequelize: sqlize, modelName:'event', tableName:'events'}
 )
