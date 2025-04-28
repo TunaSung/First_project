@@ -1,7 +1,7 @@
 function Btn(props){
     return(
         <div id="btn">
-            <button onClick={props.onClick} className="text-md max-md:text-sm bg-none border border-btnColor px-5 py-3 max-md:px-3 max-md:py-1 rounded-[3px] cursor-pointer bg-[#FFE5D9] opacity-75">{props.text}</button>
+            <button onClick={props.onClick} className="text-md max-md:text-sm bg-none border border-btnColor px-5 py-3 max-md:px-3 max-md:py-1 rounded-[3px] cursor-pointer bg-[#FFE5D9] opacity-75 hover:bg-[#f3d486] duration-300">{props.text}</button>
         </div>
     )
 }

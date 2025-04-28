@@ -5,6 +5,7 @@ import Btn from "../components/UI/Btn";
 import { useParams } from "react-router-dom";
 import { productById } from "../service/productService";
 import { addToCart } from "../service/cartService"
+import { Link } from "react-router-dom";
 import 'ldrs/dotStream'
 
 function ProductItem () {
@@ -100,8 +101,9 @@ function ProductItem () {
                                 <button onClick={tagglePlus} className="h-full flex justify-center items-center cursor-pointer p-1"><FaPlus /></button>
                             </div>
                         </div>
-                        <div id="add" className="flex justify-start items-center">
+                        <div id="add" className="flex justify-start items-center gap-4">
                             <Btn onClick={handleAddToCart} text="Add To Cart"/>
+                            <Link onClick={handleAddToCart} to='/cart'><Btn text="Buy It Now"/></Link>
                         </div>
                     </div>
                     {/* End item information */}
