@@ -2,6 +2,7 @@ import ProductCard from "../components/Feature/ProductCard"
 import { useEffect, useState, useRef } from "react";
 import { FaSearch, FaArrowLeft, FaArrowRight} from "react-icons/fa";
 import { products } from "../service/productService"
+import 'ldrs/dotStream'
 
 function Product(){
     
@@ -96,6 +97,18 @@ function Product(){
     const categorys = productList.map(item => item.category) 
     const filters = [...new Set(categorys)]
 
+    if (productList.length === 0) {
+        return (
+            <div className="w-full text-center my-25">
+                <l-dot-stream
+                size="60"
+                speed="2.5"
+                color="black" 
+                ></l-dot-stream>
+            </div>
+        )
+    }
+
     return (
         <div id="product">
 
@@ -135,7 +148,7 @@ function Product(){
                 {/* Start product items */}
                 <div id="row" className="row grid grid-cols-3 gap-rwd my-5 mb-15 max-md:grid-cols-2 ">
                     {currentProducts.map((product) => {
-                        return <ProductCard key={product.id} id={product.productId} name={product.name} price={product.price} img={product.imageUrl} description={product.description}/>
+                        return <ProductCard key={product.productId} id={product.productId} name={product.name} price={product.price} img={product.imageUrl} description={product.description} stock={product.stock} sales={product.sales}/>
                     })}
                 </div>
                 {/* End product items */}
