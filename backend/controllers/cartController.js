@@ -15,6 +15,14 @@ exports.addToCart =[authenticate,  async (req, res) => {
             if (!product) {
                 return res.status(404).json({ message: `哈哈商品不存在 ${product}` });
             }
+
+            if (product.stock > amount) {
+                product.stock -= amount; // 減少庫存
+                await product.save(); // 儲存庫存變更
+            } else {
+                return res.status(400).json({ message: `庫存不足` });
+            }
+
     
             // 查詢是否有未完成的訂單
             let order = await Order.findOne({
@@ -122,7 +130,7 @@ exports.getCart = [authenticate, async (req, res) => {
 // 更新購物車商品數量
 exports.updateCartItem = [authenticate, async (req, res) => {
         try {
-            const { productId, stock } = req.body;
+            const { productId, amount } = req.body;
             const userId = req.user.userId;
     
             // 查詢未完成的訂單
@@ -130,7 +138,7 @@ exports.updateCartItem = [authenticate, async (req, res) => {
                 where: {
                     userId: userId,
                     status: "pending",
-                    MerchantTradeNo: null
+                    merchantTradeNo: null
                 }
             });
     
@@ -150,8 +158,17 @@ exports.updateCartItem = [authenticate, async (req, res) => {
                 return res.status(404).json({ message: "商品不在購物車中" });
             }
     
+            // 更新庫存數量
+            const product = await Product.findByPk(productId);
+            if (productInOrder.amount > amount) {
+                product.stock += (productInOrder.amount - amount); // 增加庫存
+            } else if (productInOrder.amount < amount) {
+                product.stock -= (amount - productInOrder.amount); // 減少庫存
+            } 
+            await product.save(); 
+
             // 更新商品數量
-            productInOrder.amount = stock;
+            productInOrder.amount = amount;
             await productInOrder.save();
     
             res.status(200).json({ message: "商品數量已更新" });
@@ -191,6 +208,11 @@ exports.removeFromCart = [authenticate, async (req, res) => {
             if (!productInOrder) {
                 return res.status(404).json({ message: "商品不在購物車中" });
             }
+
+            // 更新庫存數量
+            const product = await Product.findByPk(productId);
+            product.stock += productInOrder.amount; // 恢復庫存
+            await product.save();
     
             // 刪除商品
             await productInOrder.destroy();

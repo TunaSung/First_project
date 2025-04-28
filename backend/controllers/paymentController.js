@@ -70,6 +70,21 @@ exports.paymentStatus = [authenticate, async (req, res) => {
           },
         });
 
+      // 更新商品銷售量
+      const pios = await ProductInOrder.findAll({
+        where: {
+          orderId: order.orderId,
+          productId: { [Op.in]: ids }
+        }
+      });
+
+      for (const { productId, amount } of pios) {
+        await Product.increment(
+          'sales',
+          { by: amount, where: { productId } }
+        );
+      }
+
   
       return res.status(200).send("Successfully updated order for payment");
     } catch (err) {
