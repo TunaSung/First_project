@@ -31,13 +31,13 @@ function Home(){
     }, []);
 
     return (
-        <div id="home">  
+        <div id="home" className="bg-gradient-to-br from-[#F3E8FF] to-[#E9D5FF] min-h-screen">  
             {/* Start jumbotron */}
             <Jumbotron />
             {/* End jumbotron */}
 
             {/* Start last event */}
-            <Hero color='#efefef'>
+            <Hero color='#FFE5D9'>
                 <FadeInSection>
                     <div id="container" className="w-[75%] max-lg:w-[90%] max-md:w-[98%] mx-auto px-4">
                         <div id="event-title" className="text-5xl font-bold text-center mb-12">LAST EVENTS</div>
@@ -59,7 +59,7 @@ function Home(){
             {/* End last event */}
 
             {/* Start hot item */}
-            <Hero color='#fff'>
+            <Hero color='#D0E8FF'>
                 <FadeInSection>
                     <div id="container" className="container-mid">
                         <div id="event-title" className="text-5xl font-bold text-center mb-12">HOT ITEMS</div>
@@ -75,8 +75,8 @@ function Home(){
 
             {/* Start VIP */}
             <FadeInSection>
-                <div id="container" className="container-mid flex justify-center items-center mb-30">
-                    <div id="vip-bg" className="w-[70%] aspect-[5/3] border flex justify-center items-end pb-15 max-md:pb-8 rounded-lg">
+                <div id="container" className="container-mid flex justify-center items-center py-30">
+                    <div id="vip-bg" className="w-[70%] aspect-[5/3] border flex justify-center items-end pb-15 max-md:pb-8 rounded-lg bg-[url('../../images/winter.jpg')] bg-cover-set">
                         <Link to='/sign-in'><Btn text="Become a member"/></Link>
                     </div>
                 </div>

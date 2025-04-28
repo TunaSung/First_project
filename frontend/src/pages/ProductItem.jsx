@@ -69,6 +69,8 @@ function ProductItem () {
         )
     }
 
+    const defaultImg = '../../images/winter.jpg';
+
     return(
         <div id="product-item">
 
@@ -80,7 +82,8 @@ function ProductItem () {
 
                     {/* Start item img */}
                     <div className="flex justify-center items-center">
-                        <div id="item-img" className="w-100 aspect-square bg-[url('../../images/kami.jpg')] bg-cover-set" />
+                        <div id="item-img" className="w-100 aspect-square bg-cover-set" 
+                        style={{backgroundImage: `url(${product.image}), url(${defaultImg})`}}/>
                     </div>
                     {/* End item img */}
 
