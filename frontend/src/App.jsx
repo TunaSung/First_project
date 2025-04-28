@@ -11,12 +11,9 @@ import Navbar from "./components/Layout/Navbar"
 import Event from './pages/Event'
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom"; // 這是用於路由的庫，還能夠讓我們使用 useLocation 判斷當前路由
 import { useEffect } from "react";
-import { setAuthHeader } from "./service/authService";
+import { clearToken, setAuthHeader } from "./service/authService";
 
-// 關掉網頁後會自動登出
-window.addEventListener("beforeunload", () => {
-  localStorage.removeItem("token");
-});
+
 
 
 // 這個函數用來根據當前路由動態渲染不同的Navbar
@@ -44,6 +41,24 @@ function App() {
   useEffect(() => {
     setAuthHeader(); // 應用加載時設置 Authorization 標頭
   }, []); // 僅在組件加載時運行一次
+
+  useEffect(() => {
+    const EXPIRE_MS = 60 * 60 * 1000; // 一小時
+    const ts = Number(localStorage.getItem('tokenSavedAt')); // 取得 token 儲存的時間戳
+    const now = Date.now(); 
+
+    // 一進頁面就檢查過期
+    if (!ts || now - ts > EXPIRE_MS) { // 如果沒有時間戳或已過期
+      clearToken();
+    } else {
+      // 排程剩餘時間後自動清除
+      const timeout = setTimeout(() => { // setTimeout(callbackFunc, delayMilliseconds)：在 delay 毫秒後執行 callback 
+        clearToken();
+      }, EXPIRE_MS - (now - ts));
+
+      return () => clearTimeout(timeout); // 取消上面的timeout
+    }
+  }, []);
 
   return (
     // 使用 Router 來包裹整個應用，這樣我們就可以使用路由功能了
