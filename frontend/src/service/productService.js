@@ -17,3 +17,12 @@ export const productById = async (id) => {
         throw new Error("獲取商品詳情失敗：" + error.message);
     }
 };
+
+export const hotItems = async (id) => {
+    try {
+        const response = await api.get(`/product/hot_items`);
+        return response.data;
+    } catch (error) {
+        throw new Error("獲取商品詳情失敗：" + error.message);
+    }
+};

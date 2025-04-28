@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-function ProductCard({id, name, price, img}){
+function ProductCard({id, name, price, img, stock, sales}){
     return (
         <Link to={`/product/${id}`}>
             <div id="product" className="border rounded-lg mx-auto w-58 aspect-[6/7] hover:shadow-xl">
@@ -7,7 +7,10 @@ function ProductCard({id, name, price, img}){
                 style={{backgroundImage: `${img}`}}/>
                 <div id="product-text" className=" ml-3 mb-2">
                     <p id="product-name" className="text-[#333] line-clamp-1 mb-1">{name}</p>
-                    <p id="product-price" className="text-red-500 text-[18px] font-bold">${price}</p>
+                    <div className="flex justify-around gap-2">
+                        <p id="product-price" className="text-red-500 text-[18px] font-bold">${price}</p>
+                        <div className="text-xs flex items-center">stock:{stock}&nbsp;&nbsp;sales:{sales}</div>
+                    </div>
                 </div>                
             </div>
         </Link>
