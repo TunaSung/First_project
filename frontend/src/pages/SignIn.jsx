@@ -1,9 +1,15 @@
 import SignInForm from "../components/Feature/SignInForm"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion";
 import Register from "../components/Feature/Register"
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function SignIn(){
+
+    useEffect(() => {
+            AOS.init({easing: 'ease-in-out'});
+    }, []);
 
     const [isClick, setIsClick] = useState(false)
 
@@ -12,9 +18,9 @@ function SignIn(){
     } 
     
     return (
-        <div id="sign-in">
-            <div id="signIn-bg" className="w-full flex justify-end max-lg:justify-center bg-[url('../../images/winter2.jpg')] bg-cover-set">
-                <div id="row" className="flex w-2/5 max-lg:w-4/5 aspect-[7/6] m-10">
+        <div id="sign-in" >
+            <div id="signIn-bg" className="w-full flex justify-end max-lg:justify-center bg-[url('../../images/winter2.jpg')] bg-cover-set" >
+                <div id="row" data-aos='zoom-in' data-aos-duration='800' className="flex w-2/5 max-lg:w-4/5 aspect-[7/6] m-10">
                     {/* Start input side */}
                     <motion.div id="input"
                     animate={{x: isClick ? '100%' : '0%', y:'0%'}} // isClick === true 的話 x 座標移動到 100%，否則移動到 0% // y 座標不變

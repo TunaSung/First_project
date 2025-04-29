@@ -3,6 +3,8 @@ import { useEffect, useState, useRef } from "react";
 import { FaSearch, FaArrowLeft, FaArrowRight} from "react-icons/fa";
 import { products } from "../service/productService"
 import 'ldrs/dotStream'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function Product(){
     
@@ -29,6 +31,7 @@ function Product(){
 
     // 匯入資料
     useEffect(() => {
+        AOS.init({once: false, easing: 'ease-in-out'});
         const fetchProducts = async () => {
             try {
                 const data = await products();
@@ -113,7 +116,7 @@ function Product(){
         <div id="product">
 
             {/* Start title */}
-            <div id="container" className="container-mid flex justify-center items-center">
+            <div id="container" data-aos="zoom-in" data-aos-duration='1000' className="container-mid flex justify-center items-center">
                 <div id="title" className="text-5xl mt-30 indie-flower-regular">Product</div>
             </div>
             {/* End title */}
@@ -125,7 +128,7 @@ function Product(){
                 <div id="filter">
 
                     {/* Start filter btn */}
-                    <div id="filter-item" className="grid grid-cols-10 max-md:grid-cols-8 max-sm:grid-cols-6 justify-center items-center gap-rwd mt-15 text-xl ">
+                    <div id="filter-item" data-aos="fade-left" data-aos-duration='1000' className="grid grid-cols-10 max-md:grid-cols-8 max-sm:grid-cols-6 justify-center items-center gap-rwd mt-15 text-xl ">
                         <button id='All' onClick={() => toggleFilter()} className="hover:text-red-500 text-sm transition duration-300 p-0 text-center cursor-pointer" >All</button>
                         {filters.map((filter)=>(
                             <button id={filter} onClick={() => toggleFilter(filter)} className={`hover:text-red-500 text-sm transition duration-300 p-0 text-center cursor-pointer ${selectedFilter === filter ? 'text-red-500' : ''}`} >{filter}</button>
@@ -134,7 +137,7 @@ function Product(){
                     {/* End filter btn */}
 
                     {/* Start search */}
-                    <div id="filter-search" className="flex self-start items-center border rounded-full max-w-55 mt-5 px-3 py-2">
+                    <div id="filter-search" data-aos="fade-right" data-aos-duration='1300' className="flex self-start items-center border rounded-full max-w-55 mt-10 mb-5 px-3 py-2">
                         <form id="filter-search" className="flex self-start items-center" onSubmit={handleSearch}>
                             <input type="text" id="search" placeholder="Search..." value={search} onChange={toggleSearch} className="w-full outline-none text-gray-600 placeholder-gray-400"/>
                             <button type="submit" id="search-btn"><FaSearch /> </button>
@@ -148,7 +151,11 @@ function Product(){
                 {/* Start product items */}
                 <div id="row" className="row grid grid-cols-3 gap-rwd my-5 mb-15 max-md:grid-cols-2 ">
                     {currentProducts.map((product) => {
-                        return <ProductCard key={product.productId} id={product.productId} name={product.name} price={product.price} img={product.imageUrl} description={product.description} stock={product.stock} sales={product.sales}/>
+                        return(
+                            <div data-aos='zoom-in-up' data-aos-duration='500'>
+                                <ProductCard key={product.productId} id={product.productId} name={product.name} price={product.price} img={product.imageUrl} description={product.description} stock={product.stock} sales={product.sales}/>
+                            </div>
+                        )
                     })}
                 </div>
                 {/* End product items */}

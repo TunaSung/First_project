@@ -1,10 +1,16 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 
 function Navbar() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+            AOS.init({duration: 400, easing: 'ease-in-out'});
+        }, []);
 
     useEffect(() => {
         // 檢查 localStorage 是否有 token，來判斷使用者是否已登入
@@ -19,7 +25,7 @@ function Navbar() {
     };
 
     return (
-        <div id="navbar" className="fixed top-0 left-0 w-full py-2 bg-black/40 flex items-center z-10">
+        <div id="navbar" data-aos='fade-down' className="fixed top-0 left-0 w-full py-2 bg-black/40 flex items-center z-10">
             <div id="container" className="container-mid">
                 <div id="row" className="row grid grid-cols-2 justify-between gap-rwd">
                     <Link to="/" id="brand" className="w-40 h-16 bg-[url('../../../images/logo.png')] bg-cover-set "/>
