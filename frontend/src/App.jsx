@@ -1,19 +1,28 @@
 import './App.css'
-import Home from './pages/Home'
-import About from './pages/About'
-import SignIn from './pages/SignIn'
-import Product from './pages/Product'
-import ProductItem from './pages/ProductItem'
-import Cart from './pages/Cart'
+// import Home from './pages/Home'
+// import About from './pages/About'
+// import SignIn from './pages/SignIn'
+// import Product from './pages/Product'
+// import ProductItem from './pages/ProductItem'
+// import Cart from './pages/Cart'
+// import Event from './pages/Event'
 import Footer from './components/Layout/Footer'
 import NavbarFixed from "./components/Layout/NavbarFixed"
 import Navbar from "./components/Layout/Navbar"
-import Event from './pages/Event'
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom"; // 這是用於路由的庫，還能夠讓我們使用 useLocation 判斷當前路由
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { clearToken, setAuthHeader } from "./service/authService";
+import 'ldrs/dotStream'
 
 
+// lazy loading => 動態載入組件，可縮短LCP，降低bundle size
+const Home = lazy(() => import('./pages/Home')); 
+const Product = lazy(() => import('./pages/Product'));
+const Cart = lazy(() => import('./pages/Cart'));
+const SignIn = lazy(() => import('./pages/SignIn'));
+const ProductItem = lazy(() => import('./pages/ProductItem'));
+const Event = lazy(() => import('./pages/Event'));
+const About = lazy(() => import('./pages/About'));
 
 
 // 這個函數用來根據當前路由動態渲染不同的Navbar
@@ -65,18 +74,27 @@ function App() {
     // Routes 用來定義路由，Route 用來定義每個路由的具體內容
     // element 用來指定當前路由對應的 Component
     // path 用來指定路由的路徑
+    // Suspense 用來處理動態載入組件的 fallback，當組件還沒有載入完成時顯示 loading 的樣式
     <Router>
       <ScrollToTop />
       <DynamicNavbar />
-      <Routes>
-        <Route path="/" element={<Home />} /> 
-        <Route path="/about" element={<About />} />
-        <Route path="/product" element={<Product />} />
-        <Route path="/product/:id" element={<ProductItem />} />
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/event" element={<Event />} />
-      </Routes>
+      <Suspense fallback={<div className="w-full text-center my-25"> 
+                    <l-dot-stream
+                    size="60"
+                    speed="2.5"
+                    color="black" 
+                    ></l-dot-stream>
+                </div>}>
+        <Routes>
+          <Route path="/" element={<Home />} /> 
+          <Route path="/about" element={<About />} />
+          <Route path="/product" element={<Product />} />
+          <Route path="/product/:id" element={<ProductItem />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/event" element={<Event />} />
+        </Routes>
+      </Suspense>
       <Footer />
     </Router>
   )
