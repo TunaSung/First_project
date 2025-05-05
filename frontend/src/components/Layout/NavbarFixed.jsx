@@ -33,7 +33,7 @@ function NavbarFixed() {
     return (
         <div id="navbar" data-aos='fade-down' className="fixed top-0 left-0 w-full py-2 bg-black/40 flex items-center z-10">
             <div id="container" className="container-mid flex items-center justify-between">
-                <Link to="/" id="brand" className="w-40 h-16 bg-[url('../../../images/logo.png')] bg-cover-set"/>
+                <Link to="/" id="brand" className="w-40 h-16 bg-[url('/images/logo.png')] bg-cover-set"/>
 
                 {/* 漢堡選單：小於 md 顯示 */}
                 <div className="md:hidden">

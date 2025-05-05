@@ -5,7 +5,7 @@ function Event(){
     const { state } = useLocation();
     // 如果沒帶state，就避免直接讀undefined
     const {title, description, img, startDate, endDate} = state || {};
-    const defaultImg = '../../images/winter.jpg';
+    const defaultImg = '/images/winter.jpg';
 
     return(
         <div id="event">

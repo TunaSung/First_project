@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 function EventCard({title, description, img, startDate, endDate}){
-    const defaultImg = '../../images/winter.jpg';
+    const defaultImg = '/images/winter.jpg';
 
     return(
         <div>

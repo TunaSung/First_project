@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 function ProductCard({id, name, price, img, stock, sales}){
-    const defaultImg = '../../images/winter.jpg';
+    const defaultImg = '/images/winter.jpg';
     return (
         <Link to={`/product/${id}`}>
             <div id="product" className="border rounded-lg mx-auto w-58 aspect-[6/7] hover:shadow-xl">

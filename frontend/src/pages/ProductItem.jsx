@@ -70,7 +70,7 @@ function ProductItem () {
         )
     }
 
-    const defaultImg = '../../images/winter.jpg';
+    const defaultImg = '/images/winter.jpg';
 
     return(
         <div id="product-item">

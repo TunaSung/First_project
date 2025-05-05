@@ -19,13 +19,13 @@ function SignIn(){
     
     return (
         <div id="sign-in" >
-            <div id="signIn-bg" className="w-full flex justify-end max-lg:justify-center bg-[url('../../images/winter2.jpg')] bg-cover-set" >
+            <div id="signIn-bg" className="w-full flex justify-end max-lg:justify-center bg-[url('/images/winter2.jpg')] bg-cover-set" >
                 <div id="row" data-aos='zoom-in' data-aos-duration='800' className="flex w-2/5 max-lg:w-4/5 aspect-[7/6] m-10">
                     {/* Start input side */}
                     <motion.div id="input"
                     animate={{x: isClick ? '100%' : '0%', y:'0%'}} // isClick === true 的話 x 座標移動到 100%，否則移動到 0% // y 座標不變
                     transition={{ duration: 1.2, ease: "easeInOut" }} //移動時間 1.2 秒，使用 easeInOut 的動畫效果
-                    className="bg-sky-500 border w-1/2 order-1 flex justify-center items-center px-7 py-5 bg-cover-set bg-[url('../../images/kami.jpg')]">
+                    className="bg-sky-500 border w-1/2 order-1 flex justify-center items-center px-7 py-5 bg-cover-set bg-[url('/images/kami.jpg')]">
                         <AnimatePresence mode="wait"> {/* 這個屬性會在動畫完成後再開始下一個動畫 */}
                             <motion.span
                             key={isClick}
@@ -45,7 +45,7 @@ function SignIn(){
                     <motion.div id="img" 
                     animate={{x: isClick ? '-100%' : '0%',y:'0%'} }
                     transition={{ duration: 1.2, ease: "easeInOut" }}
-                    className={`bg-green-500 border w-1/2 order-2 bg-cover-set bg-[url('../../images/winter.jpg')]`} ></motion.div>
+                    className={`bg-green-500 border w-1/2 order-2 bg-cover-set bg-[url('/images/winter.jpg')]`} ></motion.div>
                     {/* End img side */}
 
                     {/* Start change btn */}
