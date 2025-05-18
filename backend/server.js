@@ -38,12 +38,12 @@ app.use('/api/payment', bodyParser.json());
 app.use('/api/payment', paymentRoutes);
 
 sqlize.sync().then(() => {
-    console.log("📦 資料庫已同步");
+    console.log("資料庫已同步");
 });
 
 if (process.env.NODE_ENV === "production") {
   const staticPath = path.join(__dirname, "../frontend/dist");
-  console.log("🔍 會從這裡 serve 靜態檔案：", staticPath);
+  console.log("serve 靜態檔案：", staticPath);
   app.use(express.static(staticPath));
   app.get("*", (req, res) =>
     res.sendFile(path.join(staticPath, "index.html"))
@@ -52,5 +52,5 @@ if (process.env.NODE_ENV === "production") {
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, "0.0.0.0" , () => {
-    console.log(`🚀 伺服器運行在 http://localhost:${PORT}`);
+    console.log(`伺服器運行在 http://localhost:${PORT}`);
 });
