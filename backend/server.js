@@ -37,6 +37,10 @@ app.use('/api/payment', bodyParser.urlencoded({ extended: true }));
 app.use('/api/payment', bodyParser.json());
 app.use('/api/payment', paymentRoutes);
 
+app.get("/health", (req, res) => {
+  res.send("OK");
+});
+
 sqlize.sync().then(() => {
     console.log("資料庫已同步");
 });
