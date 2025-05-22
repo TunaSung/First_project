@@ -7,7 +7,7 @@ COPY frontend/package*.json ./
 RUN npm ci
 
 # 複製 entire 前端程式，並打包
-COPY frontend .
+COPY frontend ./
 RUN npm run build
 
 # -------- 2. 後端+佈署階段 --------
@@ -27,6 +27,20 @@ RUN npm ci --only=production
 # 複製後端程式碼
 COPY backend .
 
+FROM node:18-alpine
+WORKDIR /app
+
+# 複製後端程式 & node_modules
+COPY --from=backend-deps /app/backend/node_modules ./backend/node_modules
+COPY backend ./backend
+
+# **重點：把前端 dist 複製到 /app/frontend/dist**
+COPY --from=frontend-builder /app/frontend/dist ./frontend/dist
+
+ENV NODE_ENV=production
+ENV PORT=8080
+EXPOSE 8080
+
 # 把前面 build 出來的前端靜態資源放到後端 public 目錄
 # --from=frontend-builder
 # 指向第一階段的暱稱（AS frontend-builder），讓你可以跨階段複製檔案
@@ -36,11 +50,11 @@ COPY backend .
 
 # ./public
 # 後端的靜態路徑（因爲 app.use(express.static('public'))），Express 會自動把 public 裡的檔案當靜態資源 serve
-COPY --from=frontend-builder /app/frontend/dist ./public
+# COPY --from=frontend-builder /app/frontend/dist ./public
 
 # 支援 Railway 或 Heroku 輸入的動態 PORT
-ENV PORT=8080
-EXPOSE 8080
+# ENV PORT=8080
+# EXPOSE 8080
 
 # 啟動指令，請務必在 package.json 裡有 "start": "node server.js"
-CMD ["npm", "start"]
+CMD ["node", "backend/server.js"]
