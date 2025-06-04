@@ -56,7 +56,7 @@ function NavbarFixed() {
                                 width: 'auto'
                             },
                             bmMenu: {
-                                background: '#A3E8AA',
+                                background: '#000',
                                 padding: '1rem',
                                 borderRadius: '0.5rem',
                                 height: 'auto',

@@ -29,7 +29,7 @@ function Navbar() {
 
                 {/* 漢堡選單：小於 md 顯示 */}
                 <div className="md:hidden">
-                    <div className="fixed top-4 right-8 z-50">
+                    <div className=" right-8 z-50">
                         <Hamburger toggled={isOpen} toggle={setIsOpen} size={24} duration={0.5}  color="#fff" />
                     </div>
                     <Menu
@@ -48,7 +48,7 @@ function Navbar() {
                                 width: 'auto'
                             },
                             bmMenu: {
-                                background: '#A3E8AA',
+                                background: '#000',
                                 padding: '1rem',
                                 borderRadius: '0.5rem',
                                 height: 'auto',
