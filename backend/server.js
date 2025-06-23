@@ -23,7 +23,6 @@ const corsOptions = {
 app.use(cors(corsOptions));     // 全域套用
 app.options("*", cors(corsOptions)); // preflight 也套一次
 
-app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);

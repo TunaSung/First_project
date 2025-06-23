@@ -109,7 +109,7 @@ exports.createPaymentForm = async (req, res) => {
     TradeDesc: "購物車結帳",
     ItemName, // 商品名稱，來自前端傳遞
     ReturnURL: `${process.env.ECPAY_RETURN_URL}/api/payment/callback` 
-    // ReturnURL: `${process.env.ECPAY_RETURN_URL}/api/payment/callback` 
+    // ReturnURL: `https://4289-114-44-229-47.ngrok-free.app/api/payment/callback` 
   };
 
   try {
