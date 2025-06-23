@@ -1,6 +1,7 @@
 -- Active: 1742191591229@@127.0.0.1@3306@first_project
 CREATE DATABASE `first_project`
 
+
 USE `first_project`
 
 INSERT INTO products (name, description, price, stock, imageUrl, category, createdAt, updatedAt)
@@ -94,10 +95,4 @@ VALUES
   ('深夜星空',       '深夜星空觀測活動結合天文望遠鏡與數位投影技術，專業天文導覽員現場講解星座與天體故事，並安排星軌攝影體驗教學，參加者可親自操作相機捕捉夜空奇景，活動過程中還提供熱飲與輕食，讓大家在寧靜夜色中與宇宙對話。', 'https://example.com/images/event22.jpg','2025-05-18 20:00:00','2025-06-18 23:00:00','2025-04-19 21:00:00','2025-04-19 21:00:00'),
   ('美食工作坊',     '美食工作坊邀請米其林星廚與在地名廚合作，開設多場實作料理課程，涵蓋西式糕點、道地家常菜與創新分子料理，並搭配品酒專家講解葡萄酒與料理的完美搭配，學員可親自動手參與，結束後帶回自己製作的美味成果，提升廚藝技巧。',     'https://example.com/images/event23.jpg','2025-06-15 14:00:00','2025-07-15 17:00:00','2025-04-24 12:30:00','2025-04-24 12:30:00');
 
-```😘
-
-
-
-UPDATE pios
-SET status = 'unpaid'
-WHERE status = 'pending';
+SELECT * From orders
