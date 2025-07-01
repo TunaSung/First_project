@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://firstproject-production-700b.up.railway.app/sitemap.xml
