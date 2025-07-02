@@ -1,6 +1,7 @@
 # First Project  
 https://firstproject-production-700b.up.railway.app/  
-練習為目的寫的電商網站  
+一個簡單的全端電商網站，喜歡winter所以擺很多(有設定確定有圖片的話會被換掉༼ つ ◕_◕ ༽つ)  
+有身分認證、串接第三方金流與後台訂單管理  
   
 # 從後端拿來渲染的資料，給一點簡單的的互動  
 ![hoverEventCard](./readmeImg/hoverEventCard.png) 
