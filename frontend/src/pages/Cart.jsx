@@ -131,22 +131,22 @@ function Cart(){
     
 
     return (
-        <div id="cart">
+        <div id="cart" className="bg-[#077A7D]">
 
         {/* Start main */}
             
             {/* Start title */}
             <div id="container" className="container-mid flex justify-center items-center">
-                <div id="title" className="text-5xl mt-30 indie-flower-regular">Cart</div>
+                <div id="title" className="text-5xl mt-30 indie-flower-regular text-[#F5EEDD]">Cart</div>
             </div>
             {/* End title */}
 
             
             {/* Start cart */}
-            <div id="container" className="container-mid flex justify-center items-center mb-15 flex-col max-md:text-sm">
+            <div id="container" className="container-mid flex justify-center items-center pb-15 flex-col max-md:text-sm">
 
                 {/* Start subtitle */}
-                <div id="classification" className="border w-full pl-10 py-4 mt-15 grid grid-cols-[4fr_1fr_1fr_1fr_1fr]">
+                <div id="classification" className="border w-full pl-10 py-4 mt-15 grid grid-cols-[4fr_1fr_1fr_1fr_1fr] bg-[#F5EEDD]">
                     <div>
                         <input
                             type="checkbox"
@@ -174,7 +174,7 @@ function Cart(){
 
                 
                 {/* Start total price */}
-                <div id="classification" className="border w-full pl-10 pr-3 py-1 mt-5 flex justify-between">
+                <div id="classification" className="border w-full pl-10 pr-3 py-1 mt-5 flex justify-between bg-[#F5EEDD]">
                     <div className="flex items-center">
                         <input
                             type="checkbox"

@@ -23,14 +23,14 @@ function Navbar() {
     const navItems = ["About", "Product", "Cart"];
 
     return (
-        <div id="navbar" className="w-full py-2 bg-black/40 flex items-center z-10">
+        <div id="navbar" className="w-full py-2 bg-[#06202B] flex items-center z-10">
             <div id="container" className="container-mid flex items-center justify-between">
                 <Link to="/" id="brand" className="w-40 h-16 bg-[url(/images/logo.png)] bg-cover-set"/>
 
                 {/* 漢堡選單：小於 md 顯示 */}
                 <div className="md:hidden">
                     <div className=" right-8 z-50">
-                        <Hamburger toggled={isOpen} toggle={setIsOpen} size={24} duration={0.5}  color="#fff" />
+                        <Hamburger toggled={isOpen} toggle={setIsOpen} size={24} duration={0.5} color="#F5EEDD" />
                     </div>
                     <Menu
                         isOpen={isOpen}
@@ -60,11 +60,11 @@ function Navbar() {
                             }
                         }}
                     >
-                        <ul className="space-y-4">
+                        <ul className="space-y-4 text-white">
                             {navItems.map(item => (
                                 <li key={item}>
                                     <Link to={`/${item.toLowerCase()}`}
-                                        className="text-white text-xl hover:text-yellow-500 transition"
+                                        className="text-xl hover:text-[#F5EEDD] transition-all duration-200"
                                         onClick={() => setIsOpen(false)}
                                     >
                                         {item}
@@ -75,14 +75,14 @@ function Navbar() {
                                 {isAuthenticated ? (
                                     <button
                                         onClick={handleLogout}
-                                        className="text-white text-xl hover:text-red-500 transition"
+                                        className="text-xl cursor-pointer hover:text-red-500 transition-all duration-200"
                                     >
                                         Sign Out
                                     </button>
                                 ) : (
                                     <Link
                                         to="/sign-in"
-                                        className="text-white text-xl hover:text-yellow-500 transition"
+                                        className="text-xl hover:text-[#F5EEDD] transition-all duration-200"
                                         onClick={() => setIsOpen(false)}
                                     >
                                         Sign In
@@ -99,7 +99,7 @@ function Navbar() {
                         <li key={item}>
                             <Link
                                 to={`/${item.toLowerCase()}`}
-                                className="text-white text-xl hover:text-yellow-500 transition"
+                                className="text-white text-xl hover:text-[#e0c074] transition"
                             >
                                 {item}
                             </Link>
@@ -109,14 +109,14 @@ function Navbar() {
                         {isAuthenticated ? (
                             <button
                                 onClick={handleLogout}
-                                className="text-white text-xl hover:text-red-500 transition"
+                                className="text-white text-xl hover:text-red-500 cursor-pointer transition"
                             >
                                 Sign Out
                             </button>
                         ) : (
                             <Link
                                 to="/sign-in"
-                                className="text-white text-xl hover:text-yellow-500 transition"
+                                className="text-white text-xl hover:text-[#e0c074] transition"
                             >
                                 Sign In
                             </Link>

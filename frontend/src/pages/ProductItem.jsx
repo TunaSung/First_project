@@ -73,13 +73,13 @@ function ProductItem () {
     const defaultImg = '/images/winter.jpg';
 
     return(
-        <div id="product-item">
+        <div id="product-item" className="bg-[#077A7D] text-[#06202B] py-15">
 
             {/* Start main */}
-            <div id="container" className="w-[75%] max-lg:w-[90%] max-md:w-[98%] mx-auto p-4 justify-center items-start my-15">
+            <div id="container" className="w-[75%] max-lg:w-[90%] max-md:w-[98%] mx-auto p-4 justify-center items-start">
 
                 {/* Start item */}
-                <div id="item-info" className="grid grid-cols-[1fr_1.5fr] max-lg:grid-cols-1 border gap-rwd p-4 mb-10">
+                <div id="item-info" className="grid grid-cols-[1fr_1.5fr] bg-[#7AE2CF] max-lg:grid-cols-1 border gap-rwd p-4 mb-10">
 
                     {/* Start item img */}
                     <div className="flex justify-center items-center">
@@ -112,7 +112,7 @@ function ProductItem () {
                 {/* End item */}
 
                 {/* Start item description */}
-                <div id="total-info" className="border w-full h-200">{product.description}</div>
+                <div id="total-info" className="border w-full h-200 bg-[#F5EEDD]">{product.description}</div>
                 {/* End item description */}
 
             </div>

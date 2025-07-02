@@ -8,7 +8,7 @@ function Event(){
     const defaultImg = '/images/winter.jpg';
 
     return(
-        <div id="event">
+        <div id="event" className="bg-[#F5EEDD]">
 
             {/* Start main */}
 

@@ -34,13 +34,13 @@ function Home(){
     }, []);
 
     return (
-        <div id="home" className="bg-gradient-to-br from-[#F3E8FF] to-[#E9D5FF] min-h-screen">  
+        <div id="home" className="min-h-screen text-[#F5EEDD]">  
             {/* Start jumbotron */}
             <Jumbotron />
             {/* End jumbotron */}
 
             {/* Start last event */}
-            <Hero color='#FFE5D9'>
+            <Hero color='#077A7D'>
                 <div id="container" className="w-[75%] max-lg:w-[90%] max-md:w-[98%] mx-auto px-4">
                     <div id="event-title" data-aos="fade-left" data-aos-offset='100' className="text-5xl font-bold text-center mb-12">LAST EVENTS</div>
                     <div id="row" data-aos="fade-right" data-aos-offset='100' className="row grid grid-cols-3 gap-rwd max-lg:grid-cols-2 justify-center">
@@ -60,7 +60,7 @@ function Home(){
             {/* End last event */}
 
             {/* Start hot item */}
-            <Hero color='#D0E8FF'>
+            <Hero color='#7AE2CF'>
                 <div id="container" className="container-mid">
                     <div id="event-title" data-aos="fade-up" data-aos-offset='400' className="text-5xl font-bold text-center mb-12">HOT ITEMS</div>
                     <div id="row" data-aos="zoom-in-up" data-aos-offset='500' data-aos-duration='600' className="row grid grid-cols-4 gap-rwd max-lg:grid-cols-2 justify-center">
@@ -73,9 +73,11 @@ function Home(){
             {/* End hot item */}
 
             {/* Start VIP */}
-            <div id="container" data-aos="flip-up" data-aos-offset='800' className="container-mid flex justify-center items-center py-30">
-                <div id="vip-bg" className="w-[70%] aspect-[5/3] border flex justify-center items-end pb-15 max-md:pb-8 rounded-lg bg-[url('/images/winter.jpg')] bg-cover-set">
-                    <Link to='/sign-in'><Btn text="Become a member"/></Link>
+            <div className="w-full bg-[#077A7D]">
+                <div id="container" data-aos="flip-up" data-aos-offset='800' className="container-mid flex justify-center items-center py-30">
+                    <div id="vip-bg" className="w-[70%] aspect-[5/3] border flex justify-center items-end pb-15 max-md:pb-8 rounded-lg bg-[url('/images/winter.jpg')] bg-cover-set">
+                        <Link to='/sign-in'><Btn text="Become a member"/></Link>
+                    </div>
                 </div>
             </div>
             {/* End VIP */}

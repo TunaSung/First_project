@@ -44,7 +44,7 @@ function CartItem({name, price, itemAmount, id, onAmountChange, onClickChange, i
 
 
     return(
-        <div id="cart-items">
+        <div id="cart-items" className="bg-[#F5EEDD]">
             <div id="container" className="mt-4 w-full border py-4 pl-10 grid grid-cols-[4fr_1fr_1fr_1fr_1fr] items-center">
                 <div className="flex items-center">
                     <input type="checkbox" checked={isChecked} onChange={e => onClickChange(e.target.checked, id)} id="cart-item" className="mr-3 scale-150"/>

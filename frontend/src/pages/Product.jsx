@@ -113,16 +113,16 @@ function Product(){
     }
 
     return (
-        <div id="product">
+        <div id="product" className="bg-[#077A7D]">
 
             {/* Start title */}
             <div id="container" data-aos="zoom-in" data-aos-duration='1000' className="container-mid flex justify-center items-center">
-                <div id="title" className="text-5xl mt-30 indie-flower-regular">Product</div>
+                <div id="title" className="text-5xl mt-30 indie-flower-regular text-[#F5EEDD]">Product</div>
             </div>
             {/* End title */}
 
             {/* Start filter and search */}
-            <div id="container" className="container-mid flex justify-center items-center flex-col">
+            <div id="container" className="container-mid flex justify-center items-center flex-col text-[#F5EEDD]">
 
                 {/* Start filter */}
                 <div id="filter">
@@ -139,7 +139,7 @@ function Product(){
                     {/* Start search */}
                     <div id="filter-search" data-aos="fade-right" data-aos-duration='1300' className="flex self-start items-center border rounded-full max-w-55 mt-10 mb-5 px-3 py-2">
                         <form id="filter-search" className="flex self-start items-center" onSubmit={handleSearch}>
-                            <input type="text" id="search" placeholder="Search..." value={search} onChange={toggleSearch} className="w-full outline-none text-gray-600 placeholder-gray-400"/>
+                            <input type="text" id="search" placeholder="Search..." value={search} onChange={toggleSearch} className="w-full outline-none text-white placeholder-gray-400"/>
                             <button type="submit" id="search-btn"><FaSearch /> </button>
                         </form>
                     </div>

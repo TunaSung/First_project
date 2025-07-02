@@ -72,7 +72,7 @@ function NavbarFixed() {
                             {navItems.map(item => (
                                 <li key={item}>
                                     <Link to={`/${item.toLowerCase()}`}
-                                        className="text-white text-xl hover:text-yellow-500 transition"
+                                        className="text-white text-xl hover:text-red-300 transition"
                                         onClick={() => setIsOpen(false)}
                                     >
                                         {item}
@@ -83,7 +83,7 @@ function NavbarFixed() {
                                 {isAuthenticated ? (
                                     <button
                                         onClick={handleLogout}
-                                        className="text-white text-xl hover:text-red-500 transition"
+                                        className="text-white text-xl cursor-pointer hover:text-red-500 transition"
                                     >
                                         Sign Out
                                     </button>
@@ -107,7 +107,7 @@ function NavbarFixed() {
                         <li key={item}>
                             <Link
                                 to={`/${item.toLowerCase()}`}
-                                className="text-white text-xl hover:text-yellow-500 transition"
+                                className="text-white text-xl hover:text-[#e0c074] transition"
                             >
                                 {item}
                             </Link>
@@ -117,14 +117,14 @@ function NavbarFixed() {
                         {isAuthenticated ? (
                             <button
                                 onClick={handleLogout}
-                                className="text-white text-xl hover:text-red-500 transition"
+                                className="text-white text-xl hover:text-red-500 cursor-pointer transition"
                             >
                                 Sign Out
                             </button>
                         ) : (
                             <Link
                                 to="/sign-in"
-                                className="text-white text-xl hover:text-yellow-500 transition"
+                                className="text-white text-xl hover:text-[#e0c074] transition"
                             >
                                 Sign In
                             </Link>
