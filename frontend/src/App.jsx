@@ -1,11 +1,4 @@
 import './App.css'
-// import Home from './pages/Home'
-// import About from './pages/About'
-// import SignIn from './pages/SignIn'
-// import Product from './pages/Product'
-// import ProductItem from './pages/ProductItem'
-// import Cart from './pages/Cart'
-// import Event from './pages/Event'
 import Footer from './components/Layout/Footer'
 import NavbarFixed from "./components/Layout/NavbarFixed"
 import Navbar from "./components/Layout/Navbar"

@@ -30,7 +30,6 @@ export const login = async (email, password) => { // 後端需要什麼就跟前
 
         if (response.data.token) {
             saveToken(response.data.token);
-            setAuthHeader();
         }
 
         return response.data;
