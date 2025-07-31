@@ -8,10 +8,6 @@ const Event = require('./Event')
 User.hasMany(Order, { foreignKey: 'userId' });
 Order.belongsTo(User, { foreignKey: 'userId' });
 
-// user & product
-User.hasMany(Product, { foreignKey: 'sellerId', as: 'productsOnSale' });
-Product.belongsTo(User, { foreignKey: 'sellerId', as: 'seller' });
-
 // product & pio & order
 Product.hasMany(ProductInOrder, { foreignKey: 'productId' });
 ProductInOrder.belongsTo(Product, { foreignKey: 'productId' });
