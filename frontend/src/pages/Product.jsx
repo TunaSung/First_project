@@ -23,7 +23,7 @@ function Product(){
         if (isFirstRender.current) { //剛進入頁面時先用這個擋window.scrollTo
             isFirstRender.current = false
         } else if (prevPage.current !== page){ 
-            window.scrollTo(0,175);
+            window.scrollTo({ top: 175, behavior: 'smooth' });
         }
         prevPage.current = page; //會先跑這個再跑上面的else if
     },[page])
@@ -139,7 +139,7 @@ function Product(){
                     {/* Start search */}
                     <div id="filter-search" data-aos="fade-right" data-aos-duration='1300' className="flex self-start items-center border rounded-full max-w-55 mt-10 mb-5 px-3 py-2">
                         <form id="filter-search" className="flex self-start items-center" onSubmit={handleSearch}>
-                            <input type="text" id="search" placeholder="Search..." value={search} onChange={toggleSearch} className="w-full outline-none text-white placeholder-gray-400"/>
+                            <input type="text" id="search" placeholder="Search..." value={search} onChange={toggleSearch} className="w-full outline-none text-white placeholder-gray-400 focus:bg-transparent"/>
                             <button type="submit" id="search-btn"><FaSearch /> </button>
                         </form>
                     </div>
