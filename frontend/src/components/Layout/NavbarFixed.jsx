@@ -1,29 +1,16 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import { useState } from "react";
 import { reveal as Menu } from 'react-burger-menu';
 import { Sling as Hamburger } from 'hamburger-react';
+import { useAuth } from '../Context/authContext'
 
-
-function NavbarFixed() {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
-
-    useEffect(() => {
-            AOS.init({duration: 400, easing: 'ease-in-out'});
-        }, []);
-
-    useEffect(() => {
-        // 檢查 localStorage 是否有 token，來判斷使用者是否已登入
-        const token = localStorage.getItem("token");
-        setIsAuthenticated(!!token);
-    }, []);
+    const { isAuthenticated, logout } = useAuth();
 
     const handleLogout = () => {
-        localStorage.removeItem("token");
-        setIsAuthenticated(false);
+        logout();
         navigate("/");
         setIsOpen(false);
     };
@@ -31,14 +18,14 @@ function NavbarFixed() {
     const navItems = ["About", "Product", "Cart"];
 
     return (
-        <div id="navbar" data-aos='fade-down' className="fixed top-0 left-0 w-full py-2 bg-black/40 flex items-center z-10">
+        <div id="navbar" className="fixed top-0 left-0 w-full py-2 bg-[#06202B] flex items-center z-10">
             <div id="container" className="container-mid flex items-center justify-between">
                 <Link to="/" id="brand" className="w-40 h-16 bg-[url(/images/logo.png)] bg-cover-set"/>
 
                 {/* 漢堡選單：小於 md 顯示 */}
                 <div className="md:hidden">
-                    <div className="fixed top-4 right-8 z-50">
-                        <Hamburger toggled={isOpen} toggle={setIsOpen} size={24} duration={0.5}  color="#fff" />
+                    <div className=" right-8 z-50">
+                        <Hamburger toggled={isOpen} toggle={setIsOpen} size={24} duration={0.5} color="#F5EEDD" />
                     </div>
                     <Menu
                         isOpen={isOpen}
@@ -68,11 +55,11 @@ function NavbarFixed() {
                             }
                         }}
                     >
-                        <ul className="space-y-4">
+                        <ul className="space-y-4 text-white">
                             {navItems.map(item => (
                                 <li key={item}>
                                     <Link to={`/${item.toLowerCase()}`}
-                                        className="text-white text-xl hover:text-red-300 transition"
+                                        className="text-xl hover:text-[#F5EEDD] transition-all duration-200"
                                         onClick={() => setIsOpen(false)}
                                     >
                                         {item}
@@ -83,14 +70,14 @@ function NavbarFixed() {
                                 {isAuthenticated ? (
                                     <button
                                         onClick={handleLogout}
-                                        className="text-white text-xl cursor-pointer hover:text-red-500 transition"
+                                        className="text-xl cursor-pointer hover:text-red-500 transition-all duration-200"
                                     >
                                         Sign Out
                                     </button>
                                 ) : (
                                     <Link
                                         to="/sign-in"
-                                        className="text-white text-xl hover:text-yellow-500 transition"
+                                        className="text-xl hover:text-[#F5EEDD] transition-all duration-200"
                                         onClick={() => setIsOpen(false)}
                                     >
                                         Sign In
@@ -136,4 +123,4 @@ function NavbarFixed() {
     );
 }
 
-export default NavbarFixed;
+export default Navbar;

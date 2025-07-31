@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { register } from "../../service/authService";
+import { signUp } from "../../service/authService";
 
 function Register() {
     const [email, setEmail] = useState("");
@@ -18,7 +18,7 @@ function Register() {
         }
 
         try {
-            const data = await register(email, password);
+            const data = await signUp(email, password);
             console.log("Registration success:", data);
             setSuccess("Registration successful!");
         } catch (err) {

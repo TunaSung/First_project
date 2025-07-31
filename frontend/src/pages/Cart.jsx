@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from '../components/Context/authContext'
 import CartItem from "../components/Feature/CartItem";
 import { fetchCart } from "../service/cartService";
 import { createPayment, toggleStatus } from "../service/paymentService";
@@ -12,14 +13,14 @@ function Cart(){
     const [totalPrice, setTotalPrice] = useState(0); // 用來存儲購物車總價格
     const [isProcessingPayment, setIsProcessingPayment] = useState(false);
     const [selectAll, setSelectAll] = useState(false);
-    const isLoggedIn = localStorage.getItem("token"); // ✅ 從 localStorage 取得登入狀態
+    const { isAuthenticated } = useAuth()
 
 
     useEffect(() => {
-        if (!isLoggedIn) {
+        if (!isAuthenticated) {
             navigate("/sign-in"); // ✅ 若未登入，跳轉到登入頁面
         }
-    }, [isLoggedIn, navigate]);
+    },[]);
 
 
     useEffect(() => {

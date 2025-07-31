@@ -1,18 +1,20 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
+import { useAuth } from "../Context/authContext";
 import { useNavigate } from "react-router-dom";
-import { login } from "../../service/authService";
+import { signIn } from "../../service/authService";
 
 function SignInForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const data = await login(email, password);
-            localStorage.setItem("token", data.token); // 存 token
+            const res = await signIn(email, password);
+            login(res.token);
             navigate("/"); // 跳回首頁
         } catch (err) {
             setError(err);

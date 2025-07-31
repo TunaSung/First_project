@@ -1,21 +1,16 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { reveal as Menu } from 'react-burger-menu';
 import { Sling as Hamburger } from 'hamburger-react';
+import { useAuth } from '../Context/authContext'
 
 function Navbar() {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
-
-    useEffect(() => {
-        const token = localStorage.getItem("token");
-        setIsAuthenticated(!!token);
-    }, []);
+    const { isAuthenticated, logout } = useAuth();
 
     const handleLogout = () => {
-        localStorage.removeItem("token");
-        setIsAuthenticated(false);
+        logout();
         navigate("/");
         setIsOpen(false);
     };
