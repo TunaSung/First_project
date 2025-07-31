@@ -1,6 +1,4 @@
-const Product = require("../models/Product")
-
-// 這裡是商品的控制器，負責處理商品相關的請求
+const { Product } = require("../models/Association")
 
 // 獲取所有商品
 exports.getAllProducts = async (req, res) => {

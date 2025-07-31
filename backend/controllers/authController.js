@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs"); // bcryptjs 是一個用於加密和驗證密碼的庫
 const jwt = require("jsonwebtoken");
-const User = require("../models/User");
+const { User } = require("../models/Association");
 
 // 註冊
 exports.register = async (req, res) => {

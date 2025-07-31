@@ -1,6 +1,5 @@
 const {Model, DataTypes} = require('sequelize');
 const sqlize = require("../config/database");
-// const ProductInOrder = require("../models/ProductInOrder");
 
 class Product extends Model{};
 

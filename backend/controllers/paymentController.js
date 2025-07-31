@@ -1,9 +1,8 @@
 const ECPAY = require("../adapters/ecpay/ECPAY_Payment_node_js/lib/ecpay_payment");
-const ProductInOrder = require("../models/ProductInOrder");
-const Product = require("../models/Product");
-const Order = require("../models/Order");
+const { Product } = require('../models/Association');
+const { ProductInOrder }= require('../models/Association');
+const { Order } = require('../models/Association');
 const crypto = require('crypto');
-const authenticate = require('../middleware/JWT')
 const options = require("../adapters/ecpay/ECPAY_Payment_node_js/conf/config-example");
 const { HashKey, HashIV } = options.MercProfile;
 const {Op} = require("sequelize")
@@ -21,78 +20,77 @@ const formatDate = (date) => {
 };
 
 //更改資order跟pios的狀態
-exports.paymentStatus = [authenticate, async (req, res) => {
-    const {ids, MerchantTradeNo} = req.body;
-    const userId = req.user.userId
-    // const userId = req.user?.userId || 1
-    try {
-      let order = await Order.findOne({
-        where:{
-          userId: userId,
-          status: "pending",
-          merchantTradeNo: null
-        }
-      });
-    
-      if (!order) {
-        return res.status(404).send("No pending order to pay for");
-      };
-  
-      order.merchantTradeNo = MerchantTradeNo;
-      await order.save();
-      
-      await ProductInOrder.update(
-        { status: "unpaid" },
-        {
-          where: {
-            orderId: order.orderId,
-            productId: {[Op.in]: ids}, //Op.in: ids => 在ids裡陣列裡的productId
-            status: "pending"
-          }
-        }
-      );
-
-      // 3️⃣ 建立新訂單，留給「未被選中」的那些 pios
-      const newOrder = await Order.create({
-        userId,
+exports.paymentStatus = async (req, res) => {
+  const {ids, MerchantTradeNo} = req.body;
+  const userId = req.user.userId
+  // const userId = req.user?.userId || 1
+  try {
+    let order = await Order.findOne({
+      where:{
+        userId: userId,
         status: "pending",
-        merchantTradeNo: null,
-      });
+        merchantTradeNo: null
+      }
+    });
+  
+    if (!order) {
+      return res.status(404).send("No pending order to pay for");
+    };
 
-      // 4️⃣ 把「未選中」的 pios 移到 newOrder
-      await ProductInOrder.update(
-        { orderId: newOrder.orderId },
-        {
-          where: {
-            orderId: order.orderId,          // 原訂單 ID
-            productId: { [Op.notIn]: ids },  //Op.in: ids => 不在ids裡陣列裡的productId
-            status: "pending",               // 只移動還是pending的
-          },
-        });
-
-      // 更新商品銷售量
-      const pios = await ProductInOrder.findAll({
+    order.merchantTradeNo = MerchantTradeNo;
+    await order.save();
+    
+    await ProductInOrder.update(
+      { status: "unpaid" },
+      {
         where: {
           orderId: order.orderId,
-          productId: { [Op.in]: ids }
+          productId: {[Op.in]: ids}, //Op.in: ids => 在ids裡陣列裡的productId
+          status: "pending"
         }
+      }
+    );
+
+    // 3️⃣ 建立新訂單，留給「未被選中」的那些 pios
+    const newOrder = await Order.create({
+      userId,
+      status: "pending",
+      merchantTradeNo: null,
+    });
+
+    // 4️⃣ 把「未選中」的 pios 移到 newOrder
+    await ProductInOrder.update(
+      { orderId: newOrder.orderId },
+      {
+        where: {
+          orderId: order.orderId,          // 原訂單 ID
+          productId: { [Op.notIn]: ids },  //Op.in: ids => 不在ids裡陣列裡的productId
+          status: "pending",               // 只移動還是pending的
+        },
       });
 
-      for (const { productId, amount } of pios) {
-        await Product.increment(
-          'sales',
-          { by: amount, where: { productId } }
-        );
+    // 更新商品銷售量
+    const pios = await ProductInOrder.findAll({
+      where: {
+        orderId: order.orderId,
+        productId: { [Op.in]: ids }
       }
+    });
 
-  
-      return res.status(200).send("Successfully updated order for payment");
-    } catch (err) {
-      console.error("Error updating Order:", err);
-      return res.status(500).send("Unable to updated order for payment");
+    for (const { productId, amount } of pios) {
+      await Product.increment(
+        'sales',
+        { by: amount, where: { productId } }
+      );
     }
+
+
+    return res.status(200).send("Successfully updated order for payment");
+  } catch (err) {
+    console.error("Error updating Order:", err);
+    return res.status(500).send("Unable to updated order for payment");
   }
-];
+}
 
 // 全支付需要用到TotalAmount, ItemName
 exports.createPaymentForm = async (req, res) => {

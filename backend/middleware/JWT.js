@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken'); // 引入 jsonwebtoken 模組，用於生成和驗證 JWT
-const User = require('../models/User');
+const { User } = require('../models/Association');
 
 
 const authenticate = async (req, res, next) => {
