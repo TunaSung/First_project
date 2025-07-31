@@ -4,7 +4,6 @@ import Hero from "../components/Layout/Hero"
 import Jumbotron from "../components/Feature/Jumbotron"
 import ProductCard from "../components/Feature/ProductCard"
 import { Link } from "react-router-dom"; // 用來導向其他頁面
-// import FadeInSection from '../components/UI/FadeInSection' // 用來實現淡入效果
 import { fetchEvent } from "../service/eventService"
 import { hotItems } from "../service/productService"
 import { useEffect, useState } from "react" 
@@ -22,10 +21,9 @@ function Home(){
             try {
                 const lastEvents = await fetchEvent();
                 setEventList(lastEvents.events); // 更新事件列表狀態
-                console.log(lastEvents);
+                
                 const getItems = await hotItems();
                 setHotItemsList(getItems.products); // 更新熱門商品列表狀態
-                console.log(getItems.products);
             } catch (error) {
                 console.error("Error fetching event data:", error);
             }
@@ -62,7 +60,7 @@ function Home(){
             {/* Start hot item */}
             <Hero color='#7AE2CF'>
                 <div id="container" className="container-mid">
-                    <div id="event-title" data-aos="fade-up" data-aos-offset='400' className="text-5xl font-bold text-center mb-12">HOT ITEMS</div>
+                    <div id="product-title" data-aos="fade-up" data-aos-offset='400' className="text-5xl font-bold text-center mb-12">HOT ITEMS</div>
                     <div id="row" data-aos="zoom-in-up" data-aos-offset='500' data-aos-duration='600' className="row grid grid-cols-4 gap-rwd max-lg:grid-cols-2 justify-center">
                         {hotItemsList.map((product) => {
                             return <ProductCard key={product.productId} id={product.productId} name={product.name} price={product.price} img={product.imageUrl} description={product.description} stock={product.stock} sales={product.sales}/>
