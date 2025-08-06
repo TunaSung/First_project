@@ -1,5 +1,4 @@
-# First Project  
-https://firstproject-production-700b.up.railway.app/  
+# First Project   
 一個簡單的全端電商網站，喜歡winter所以擺很多(有設定確定有圖片的話會被換掉༼ つ ◕_◕ ༽つ)  
 以 Vite + React + Tailwind Css + Express.js + MySQL 為技術主軸  
 有身分認證、串接第三方金流與後台訂單管理  
