@@ -39,20 +39,27 @@ function Home(){
 
             {/* Start last event */}
             <Hero color='#077A7D'>
-                <div id="container" className="w-[75%] max-lg:w-[90%] max-md:w-[98%] mx-auto px-4">
-                    <div id="event-title" data-aos="fade-left" data-aos-offset='100' className="text-5xl font-bold text-center mb-12">LAST EVENTS</div>
-                    <div id="row" data-aos="fade-right" data-aos-offset='100' className="row grid grid-cols-3 gap-rwd max-lg:grid-cols-2 justify-center">
-                        {eventList.map((event, index) => (
-                            <EventCard
-                                key={event.eventId}
-                                title={event.title}
-                                description={event.description}
-                                img={event.imageUrl}
-                                startDate={event.startDate}
-                                endDate={event.endDate}
-                            />
-                        ))}
-                    </div>
+                <div id="container" className="container-mid">
+                    <div id="event-title" data-aos="fade-left" data-aos-offset='50' className="text-5xl font-bold text-center mb-12">LAST EVENTS</div>
+                    {eventList.length === 0 ? (
+                        <p data-aos="fade-right" data-aos-offset='100' className="text-4xl text-center py-15">
+                            No new events yet... (ಥ _ ಥ)
+                        </p>
+                    ) : (
+                        <div id="row" data-aos="fade-right" data-aos-offset='50' className="row grid grid-cols-3 gap-rwd max-lg:grid-cols-2 justify-center">
+                            {eventList.map((event, index) => (
+                                <EventCard
+                                    key={event.eventId}
+                                    title={event.title}
+                                    description={event.description}
+                                    img={event.imageUrl}
+                                    startDate={event.startDate}
+                                    endDate={event.endDate}
+                                />
+                            ))}
+                        </div>
+                    )
+                    }
                 </div>
             </Hero>
             {/* End last event */}
@@ -60,8 +67,8 @@ function Home(){
             {/* Start hot item */}
             <Hero color='#7AE2CF'>
                 <div id="container" className="container-mid">
-                    <div id="product-title" data-aos="fade-up" data-aos-offset='400' className="text-5xl font-bold text-center mb-12">HOT ITEMS</div>
-                    <div id="row" data-aos="zoom-in-up" data-aos-offset='500' data-aos-duration='600' className="row grid grid-cols-4 gap-rwd max-lg:grid-cols-2 justify-center">
+                    <div id="product-title" data-aos="fade-up" data-aos-offset='50' className="text-5xl font-bold text-center mb-12">HOT ITEMS</div>
+                    <div id="row" data-aos="zoom-in-up" data-aos-offset='200' data-aos-duration='600' className="row grid grid-cols-4 gap-rwd max-lg:grid-cols-2 justify-center">
                         {hotItemsList.map((product) => {
                             return <ProductCard key={product.productId} id={product.productId} name={product.name} price={product.price} img={product.imageUrl} description={product.description} stock={product.stock} sales={product.sales}/>
                         })}
@@ -72,7 +79,7 @@ function Home(){
 
             {/* Start VIP */}
             <div className="w-full bg-[#077A7D]">
-                <div id="container" data-aos="flip-up" data-aos-offset='800' className="container-mid flex justify-center items-center py-30">
+                <div id="container" data-aos="flip-up" data-aos-offset='500' className="container-mid flex justify-center items-center py-30">
                     <div id="vip-bg" className="w-[70%] aspect-[5/3] border flex justify-center items-end pb-15 max-md:pb-8 rounded-lg bg-[url('/images/winter.jpg')] bg-cover-set">
                         <Link to='/sign-in'><Btn text="Become a member"/></Link>
                     </div>
