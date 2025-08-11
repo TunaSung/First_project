@@ -79,7 +79,7 @@ function Home(){
 
             {/* Start VIP */}
             <div className="w-full bg-[#077A7D]">
-                <div id="container" data-aos="flip-up" data-aos-offset='500' className="container-mid flex justify-center items-center py-30">
+                <div id="container" data-aos="flip-up" data-aos-offset='400' className="container-mid flex justify-center items-center py-30">
                     <div id="vip-bg" className="w-[70%] aspect-[5/3] border flex justify-center items-end pb-15 max-md:pb-8 rounded-lg bg-[url('/images/winter.jpg')] bg-cover-set">
                         <Link to='/sign-in'><Btn text="Become a member"/></Link>
                     </div>
