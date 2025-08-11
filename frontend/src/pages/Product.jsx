@@ -128,7 +128,7 @@ function Product(){
                 <div id="filter">
 
                     {/* Start filter btn */}
-                    <div id="filter-item" data-aos="fade-left" data-aos-duration='1000' className="grid grid-cols-10 max-md:grid-cols-8 max-sm:grid-cols-6 justify-center items-center gap-rwd mt-15 text-xl ">
+                    <div id="filter-item" data-aos="fade-left" data-aos-duration='1000' className="grid grid-cols-10 max-lg:grid-cols-8 max-md:grid-cols-7 max-sm:grid-cols-6 max-xs:grid-cols-4 justify-center items-center gap-rwd mt-15 text-xl ">
                         <button id='All' onClick={() => toggleFilter()} className="hover:text-red-500 text-sm transition duration-300 p-0 text-center cursor-pointer" >All</button>
                         {filters.map((filter)=>(
                             <button id={filter} onClick={() => toggleFilter(filter)} className={`hover:text-red-500 text-sm transition duration-300 p-0 text-center cursor-pointer ${selectedFilter === filter ? 'text-red-500' : ''}`} >{filter}</button>

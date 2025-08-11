@@ -42,7 +42,7 @@ function Home(){
                 <div id="container" className="container-mid">
                     <div id="event-title" data-aos="fade-left" data-aos-offset='50' className="text-5xl font-bold text-center mb-12">LAST EVENTS</div>
                     {eventList.length === 0 ? (
-                        <p data-aos="fade-right" data-aos-offset='100' className="text-4xl text-center py-15">
+                        <p data-aos="fade-right" data-aos-offset='100' className="text-4xl text-center max-xs:text-2xl py-15">
                             No new events yet... (ಥ _ ಥ)
                         </p>
                     ) : (
