@@ -68,7 +68,7 @@ function Home(){
             <Hero color='#7AE2CF'>
                 <div id="container" className="container-mid">
                     <div id="product-title" data-aos="fade-up" data-aos-offset='50' className="text-5xl max-sm:text-3xl font-bold text-center mb-12">HOT ITEMS</div>
-                    <div id="row" data-aos="zoom-in-up" data-aos-offset='200' data-aos-duration='600' className="row border grid grid-cols-4 gap-rwd max-lg:grid-cols-2 justify-center items-center">
+                    <div id="row" data-aos="zoom-in-up" data-aos-offset='200' data-aos-duration='600' className="row grid grid-cols-4 gap-rwd max-lg:grid-cols-2 justify-center items-center">
                         {hotItemsList.map((product) => {
                             return <ProductCard key={product.productId} id={product.productId} name={product.name} price={product.price} img={product.imageUrl} description={product.description} stock={product.stock} sales={product.sales}/>
                         })}
