@@ -15,7 +15,8 @@ Globel;
 }
 
 @theme {
-    --breakpoint-xs: 35rem
+    --breakpoint-xs: 35rem;
+    --breakpoint-xxs:25rem;
 }
 
 /* ------------------- *\
