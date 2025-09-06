@@ -1,19 +1,22 @@
-# First Project   
-一個簡單的全端電商網站，喜歡winter所以擺很多(有設定確定有圖片的話會被換掉༼ つ ◕_◕ ༽つ)  
-以 Vite + React + Tailwind Css + Express.js + MySQL 為技術主軸  
-有身分認證、串接第三方金流與後台訂單管理  
-  
-# 從後端拿來渲染的資料，給一點簡單的的互動  
-![hoverEventCard](./readmeImg/hoverEventCard.png) 
-  
-# 按中間的按鈕winter會換邊顯示  
-![signIn](./readmeImg/signIn.png)  
-![signUp](./readmeImg/signUp.png)  
-  
-# 後端抽取資料後做filter  
-![productFilter](./readmeImg/productFilter.png)  
-![productSearch](./readmeImg/productSearch.png)
+# First_project — E-Commerce Platform
 
-# 商品放入購物車後選擇此次要買什麼，然後用綠界金流做串接來繳費
-![cart](./readmeImg/cart.png)  
-![ECPay](./readmeImg/ECPay.png)
+一個完整的 **電商購物平台**，涵蓋從商品瀏覽到結帳付款的全流程。  
+使用者可以註冊、登入、加入購物車並完成付款。  
+
+---
+
+## 功能特色
+- 使用者註冊 / 登入 / 驗證
+- 商品瀏覽與購物車功能
+- 串接 **ECPay 全方位金流**，支援線上付款
+- 訂單管理（建立 / 狀態更新）
+- 前端設計使用 **React + Tailwind**，響應式介面
+
+---
+
+## 技術棧
+- **Frontend**：React (Vite) + Tailwind CSS
+- **Backend**：Node.js + Express
+- **Database**：MySQL (Sequelize ORM)
+- **Payment**：ECPay Gateway
+- **Deploy**：Railway
