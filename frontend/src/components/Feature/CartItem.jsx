@@ -44,11 +44,11 @@ function CartItem({name, price, itemAmount, id, onAmountChange, onClickChange, i
 
 
     return(
-        <div id="cart-items" className="bg-[#F5EEDD]">
+    <div id="cart-items" className="bg-[var(--primary-color)]">
             <div id="container" className="mt-4 w-full border py-4 pl-10 grid grid-cols-[4fr_1fr_1fr_1fr_1fr] items-center">
                 <div className="flex items-center">
                     <input type="checkbox" checked={isChecked} onChange={e => onClickChange(e.target.checked, id)} id="cart-item" className="mr-3 scale-150"/>
-                    <a href="#!" className="w-20 aspect-square bg-[url('/images/winter.jpg')] bg-cover-set mr-3"/>
+                    <a href="#!" className="w-20 aspect-square bg-[url('/images/imgExample.jpg')] bg-cover-set mr-3"/>
                     <a href="#!">
                         <label htmlFor="cart-item">
                             <h3 id="cart-item-title" className="max-w-50 line-clamp-2">{name}</h3>

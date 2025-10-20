@@ -22,7 +22,7 @@ function SignInForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="bg-white rounded-lg px-3 py-5 max-xl:px-2 max-xl:py-3 max-lg:px-7 max-lg:py-10 max-md:px-3 max-md:py-5 max-sm:py-2 max-sm:text-sm flex flex-col">
+        <form onSubmit={handleSubmit} className="rounded-lg px-3 py-5 max-xl:px-2 max-xl:py-3 max-lg:px-7 max-lg:py-10 max-md:px-3 max-md:py-5 max-sm:py-2 max-sm:text-sm flex flex-col">
             <label htmlFor="email">Email:</label>
             <input
                 type="email"

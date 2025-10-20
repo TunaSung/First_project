@@ -32,14 +32,14 @@ function Home(){
     }, []);
 
     return (
-        <div id="home" className="min-h-screen text-[#F5EEDD]">  
+    <div id="home" className="min-h-screen">  
             {/* Start jumbotron */}
             <Jumbotron />
             {/* End jumbotron */}
 
             {/* Start last event */}
-            <Hero color='#077A7D'>
-                <div id="container" className="container-mid">
+            <Hero color='var(--tertiary-color)'>
+                <div id="container" className="container-mid text-[var(--primary-color)]">
                     <div id="event-title" data-aos="fade-left" data-aos-offset='50' className="text-5xl max-sm:text-3xl font-bold text-center mb-12">LAST EVENTS</div>
                     {eventList.length === 0 ? (
                         <p data-aos="fade-right" data-aos-offset='100' className="text-4xl text-center max-xs:text-2xl py-15">
@@ -65,8 +65,8 @@ function Home(){
             {/* End last event */}
 
             {/* Start hot item */}
-            <Hero color='#7AE2CF'>
-                <div id="container" className="container-mid">
+            <Hero color='var(--primary-color)'>
+                <div id="container" className="container-mid text-[var(--quaternary-color)]">
                     <div id="product-title" data-aos="fade-up" data-aos-offset='50' className="text-5xl max-sm:text-3xl font-bold text-center mb-12">HOT ITEMS</div>
                     <div id="row" data-aos="zoom-in-up" data-aos-offset='200' data-aos-duration='600' className="row grid grid-cols-4 gap-rwd max-lg:grid-cols-2 justify-center items-center">
                         {hotItemsList.map((product) => {
@@ -78,10 +78,12 @@ function Home(){
             {/* End hot item */}
 
             {/* Start VIP */}
-            <div className="w-full bg-[#077A7D]">
+            <div className="w-full bg-[url('/images/vip3.png')] bg-cover-set">
                 <div id="container" data-aos="flip-up" data-aos-offset='400' className="container-mid flex justify-center items-center py-30">
-                    <div id="vip-bg" className="w-[70%] aspect-[5/3] border flex justify-center items-end pb-15 max-md:pb-8 rounded-lg bg-[url('/images/winter.jpg')] bg-cover-set">
-                        <Link to='/sign-in'><Btn text="Become a member"/></Link>
+                    <div id="vip-bg" className="w-[70%] aspect-[5/3] shadow-lg flex justify-center items-end pb-15 max-md:pb-8 rounded-lg bg-[url('/images/vip2.jpg')] bg-cover-set">
+                        <Link to='/sign-in'>
+                            <Btn text="Become a member"/>
+                        </Link>
                     </div>
                 </div>
             </div>

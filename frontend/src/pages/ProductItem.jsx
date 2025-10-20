@@ -1,124 +1,203 @@
-import { useState, useEffect } from "react";
-import { FaPlus, FaMinus } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useMemo } from "react";
+import { FaPlus, FaMinus, FaTruck, FaShieldAlt } from "react-icons/fa";
+import { useNavigate, useParams } from "react-router-dom";
 import Btn from "../components/UI/Btn";
-import { useParams } from "react-router-dom";
 import { productById } from "../service/productService";
-import { addToCart } from "../service/cartService"
-import { Link } from "react-router-dom";
-import 'ldrs/dotStream'
+import { addToCart } from "../service/cartService";
+import "ldrs/dotStream";
 
-function ProductItem () {
+function ProductItem() {
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-    const {id} = useParams();
-    const [product, setProduct] = useState(null);
-    const [amount, setAmount] = useState(1);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const navigate = useNavigate();
+  const [product, setProduct] = useState(null);
+  const [amount, setAmount] = useState(1);
+  const [adding, setAdding] = useState(false);
 
+  // 判斷是否登入（初始快取一次即可）
+  const isAuthenticated = useMemo(() => !!localStorage.getItem("token"), []);
 
-    useEffect(() => {
-        const fetchProduct = async () => {
-          try {
-            const data = await productById(id);
-            setProduct(data.product);
-          } catch (error) {
-            console.error("獲取商品詳情失敗：", error);
-          }
-        };
-        fetchProduct();
-    }, [id]);
-
-    useEffect(() => {
-            // 檢查 localStorage 是否有 token，來判斷使用者是否已登入
-            const token = localStorage.getItem("token");
-            setIsAuthenticated(!!token);
-    }, []);
-
-    const tagglePlus = () => {
-        setAmount(amount+1)
-    }
-    const taggleMinus = () => {
-        if (amount > 1) {
-            setAmount(amount-1)
-        }
-    }
-
-    const handleAddToCart = async () => {
-        if (!isAuthenticated) {
-            alert("Login first!")
-            navigate("/sign-in"); // ✅ 若未登入，跳轉到登入頁面
-        } else {
-            try {
-                await addToCart(id, amount); // 調用 addToCart 服務將商品加入購物車
-                alert("商品已加入購物車！");
-            } catch (error) {
-                console.error("加入購物車失敗", error);
-            }
-        }
+  useEffect(() => {
+    let alive = true;
+    (async () => {
+      try {
+        const data = await productById(id);
+        if (alive) setProduct(data.product);
+      } catch (err) {
+        console.error("獲取商品詳情失敗：", err);
+      }
+    })();
+    return () => {
+      alive = false;
     };
+  }, [id]);
 
-    if (!product) {
-        return (
-            <div className="w-full text-center my-25">
-                <l-dot-stream
-                size="60"
-                speed="2.5"
-                color="black" 
-                ></l-dot-stream>
-            </div>
-        )
+  const handleStep = (delta) => {
+    setAmount((a) => Math.max(1, a + delta));
+  };
+
+  async function ensureLoginThen(fn) {
+    if (!isAuthenticated) {
+      alert("Login first!");
+      navigate("/sign-in");
+      return;
     }
+    await fn();
+  }
 
-    const defaultImg = '/images/winter.jpg';
+  const handleAddToCart = async (redirectTo) => {
+    if (adding) return; // 避免連點
+    await ensureLoginThen(async () => {
+      try {
+        setAdding(true);
+        await addToCart(id, amount);
+        if (redirectTo === "cart") {
+          navigate("/cart");
+        } else {
+          alert("商品已加入購物車！");
+        }
+      } catch (err) {
+        console.error("加入購物車失敗：", err);
+        alert("加入購物車失敗，請稍後再試");
+      } finally {
+        setAdding(false);
+      }
+    });
+  };
 
-    return(
-        <div id="product-item" className="bg-[#077A7D] text-[#06202B] py-15">
+  const defaultImg = "/images/imgExample.jpg";
 
-            {/* Start main */}
-            <div id="container" className="w-[75%] max-lg:w-[90%] max-md:w-[98%] mx-auto p-4 justify-center items-start">
+  const formattedPrice = useMemo(() => {
+    if (!product?.price && product?.price !== 0) return "";
+    try {
+      return new Intl.NumberFormat("zh-TW", {
+        style: "currency",
+        currency: "TWD",
+        maximumFractionDigits: 0,
+      }).format(Number(product.price));
+    } catch {
+      return product.price;
+    }
+  }, [product]);
 
-                {/* Start item */}
-                <div id="item-info" className="grid grid-cols-[1fr_1.5fr] bg-[#7AE2CF] max-lg:grid-cols-1 border gap-rwd p-4 mb-10">
+  if (!product) {
+    return (
+      <div className="w-full py-24 flex justify-center">
+        <l-dot-stream size="64" speed="2.2" color="black" />
+      </div>
+    );
+  }
 
-                    {/* Start item img */}
-                    <div className="flex justify-center items-center">
-                        <div id="item-img" className="w-100 aspect-square bg-cover-set" 
-                        style={{backgroundImage: `url(${product.image}), url(${defaultImg})`}}/>
-                    </div>
-                    {/* End item img */}
+  return (
+    <div
+      id="product-item"
+      className="bg-[var(--secondary-color)] text-[var(--primary-color)]"
+    >
+      {/* Main container */}
+      <div className="mx-auto w-[75%] max-lg:w-[90%] max-md:w-[96%] py-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+          {/* start image */}
+          <div className="bg-[var(--tertiary-color)] rounded-2xl p-4 flex items-center justify-center">
+            <img
+              src={product.image || defaultImg}
+              onError={(e) => (e.currentTarget.src = defaultImg)}
+              alt={product.name}
+              className="w-full aspect-square object-cover rounded-xl"
+              loading="eager"
+            />
+          </div>
+          {/* end image */}
 
-                    {/* Start item information */}
-                    <div id="item" className="grid grid-rows-[1fr_1fr_7fr_1fr_1.5fr]">
-                        <div id="item-title" className="text-2xl">{product.name}</div>
-                        <div id="item-price" className="text-red-600 text-3xl">{product.price}</div>
-                        <div id="item-filter" className="border">transport color size</div>
-                        <div id="quantity" className="flex justify-start items-center">
-                            <h3 className="mr-2">Quantity</h3>
-                            <div id="amount" className="grid grid-cols-[1fr_1.5fr_1fr] justify-between items-center border divide-x border-[#ccc] divide-[#ccc]">
-                                <button onClick={taggleMinus} className="h-full flex justify-center items-center cursor-pointer p-1"><FaMinus /></button>
-                                <div className="text-center font-bold">{amount}</div>
-                                <button onClick={tagglePlus} className="h-full flex justify-center items-center cursor-pointer p-1"><FaPlus /></button>
-                            </div>
-                        </div>
-                        <div id="add" className="flex justify-start items-center gap-4">
-                            <Btn onClick={handleAddToCart} text="Add To Cart"/>
-                            <Link onClick={handleAddToCart} to='/cart'><Btn text="Buy It Now"/></Link>
-                        </div>
-                    </div>
-                    {/* End item information */}
-                    
-                </div>
-                {/* End item */}
-
-                {/* Start item description */}
-                <div id="total-info" className="border w-full h-200 bg-[#F5EEDD]">{product.description}</div>
-                {/* End item description */}
-
+          {/* start info */}
+          <aside className="flex flex-col gap-5 lg:sticky lg:top-8">
+            {/* start name & price */}
+            <div>
+              <h1 className="text-2xl lg:text-3xl font-bold mb-1">
+                {product.name}
+              </h1>
+              <p className="text-red-600 text-2xl lg:text-3xl font-semibold">
+                {formattedPrice}
+              </p>
+            {/* end name & price */}
             </div>
-            {/* End main */}
 
+            {/* start quantity */}
+            <div className="space-y-2">
+              <label
+                htmlFor="qty-stepper"
+                className="block text-sm font-medium text-slate-700"
+              >
+                Quantity
+              </label>
+              <div
+                id="qty-stepper"
+                className="grid grid-cols-[1fr_2fr_1fr] w-30 items-stretch overflow-hidden rounded-lg border border-slate-300 bg-white text-slate-800"
+              >
+                <button
+                  type="button"
+                  aria-label="Decrease quantity"
+                  onClick={() => handleStep(-1)}
+                  className="flex items-center justify-center hover:bg-slate-50 active:scale-[0.98] transition"
+                >
+                  <FaMinus />
+                </button>
+                <div
+                  className="flex items-center justify-center font-semibold select-none"
+                  aria-live="polite"
+                >
+                  {amount}
+                </div>
+                <button
+                  type="button"
+                  aria-label="Increase quantity"
+                  onClick={() => handleStep(1)}
+                  className="flex items-center justify-center hover:bg-slate-50 active:scale-[0.98] transition"
+                >
+                  <FaPlus />
+                </button>
+              </div>
+            </div>
+            {/* end quantity */}
+
+            {/* start actions */}
+            <div className="flex flex-wrap gap-3">
+              <Btn
+                onClick={() => handleAddToCart()}
+                text={adding ? "Adding..." : "Add To Cart"}
+              />
+              <Btn
+                onClick={() => handleAddToCart("cart")}
+                text="Buy It Now"
+              />
+            </div>
+            {/* end actions */}
+
+            {/* start guarantees */}
+            <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-600">
+              <div className="inline-flex items-center gap-2">
+                <FaTruck className="shrink-0" />
+                <span>Local fast shipping</span>
+              </div>
+              <div className="inline-flex items-center gap-2">
+                <FaShieldAlt className="shrink-0" />
+                <span>Secure payment & warranty</span>
+              </div>
+            </div>
+            {/* end guarantees */}
+          </aside>
+          {/* end info */}
         </div>
-    )
+
+        {/* start description */}
+        <section className="mt-10">
+          <div className="rounded-2xl border border-slate-200 bg-[var(--primary-color)]/60 p-6 leading-7 text-slate-800">
+            {product.description}
+          </div>
+        </section>
+        {/* end description */}
+      </div>
+    </div>
+  );
 }
-export default ProductItem
+
+export default ProductItem;

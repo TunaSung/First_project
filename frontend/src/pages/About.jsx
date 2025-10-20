@@ -17,27 +17,25 @@ function About(){
             {/* Start main */}
 
             {/* Start about us */}
-            <div className="w-full bg-[#077A7D]">
+            <div className="w-full bg-[var(--primary-color)]">
                 <div id="container" data-aos="zoom-in" className="container-mid flex justify-center items-center">
-                    <div id="title" className="text-5xl mt-30 indie-flower-regular text-[#F5EEDD]">ABOUT US</div>
+                    <div id="title" className="text-5xl mt-30 indie-flower-regular text-[var(--quaternary-color)]">ABOUT US</div>
                 </div>
             </div>
             {/* End about us */}
 
             {/* Start about 1 */}
-            <Hero color="#077A7D">
-                <div id="container" className="container-mid flex justify-center items-center text-[#F5EEDD]">
+            <Hero color="var(--primary-color)">
+                <div id="container" className="container-mid flex justify-center items-center text-[var(--quaternary-color)]">
                     <div id="row" className="grid grid-cols-2 gap-rwd items-center max-md:grid-cols-1">
                         <div id="about-preview" data-aos="fade-right" data-aos-duration='1300' >
-                            <h3 id="title" className="text-[32px] font-bold mt-10 mb-6 flex items-center">Title</h3>
-                            <p id="para" className="text-[16px] mb-6 text-justify leading-loose">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia ratione ex corporis nisi nulla provident corrupti commodi harum, eligendi dicta voluptatibus odio nemo quas? Temporibus quia nisi voluptatibus similique quidem.
-                                Voluptatum nihil earum quos beatae quidem, provident corporis eligendi ex nemo laboriosam, unde deleniti. Fuga eius et iste eveniet dicta, inventore voluptatibus labore corporis odio velit? Rerum quisquam culpa fuga.
-                                Quia eum adipisci at facilis laborum incidunt nulla unde ab pariatur quis vero impedit cupiditate, obcaecati, perferendis ipsum voluptate consequuntur a ut dolorum? Cumque cupiditate minima natus quos voluptas dolor!
+                            <h3 id="title" className="text-3xl font-bold mt-10 mb-6 flex items-center">Our Story</h3>
+                            <p id="para" className="mb-6 text-justify leading-loose">
+                                We’re a small team obsessed with “good products, great experiences.” From a tiny curation project to a full online store, we’ve believed one thing from day one: shopping should be simple, transparent, and a little warm. Our daily mission is to save you time and raise the bar on quality.
                             </p>
                         </div>
                         <div data-aos="fade-left">
-                            <ImgContainer img={'hunter'}/>
+                            <ImgContainer img={'about1'}/>
                         </div>
                     </div>
                 </div>
@@ -45,16 +43,18 @@ function About(){
             {/* End about 1 */}
             
             {/* Start about 2 */}
-            <Hero color="#7AE2CF">
+            <Hero color="var(--tertiary-color)">
                 <div id="container" className="container-mid flex justify-center items-center">
                     <div id="row" className="grid grid-cols-2 gap-rwd items-center max-md:grid-cols-1">
                         <div data-aos="fade-up" data-aos-duration='1300' data-aos-offset='250' className="order-2">
-                            <ImgContainer img={'hunter'} />
+                            <ImgContainer img={'about2'} />
                         </div>
-                        <div id="about-preview" data-aos="fade-left" data-aos-duration='1000' data-aos-offset='200' className="order-3 max-md:order-1 text-[#06202B]">
-                            <h3 id="title" className="text-[32px] font-bold mt-10 mb-6 flex items-center">Title</h3>
-                            <p id="para" className="text-[16px] mb-6 text-justify leading-loose">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt, alias, cumque, adipisci officia ea aut sequi commodi autem sint impedit id assumenda dolor distinctio nihil soluta ratione repellendus ullam consequuntur.
+                        <div id="about-preview" data-aos="fade-left" data-aos-duration='1000' data-aos-offset='200' className="order-3 max-md:order-1 text-[var(--primary-color)]">
+                            <h3 id="title" className="text-3xl font-bold mt-10 mb-6 flex items-center">What We Stand For</h3>
+                            <p id="para" className="mb-6 text-justify leading-loose">
+                            ．Quality & Transparency — Clear materials and sourcing, honest pricing, no fluff. <br />
+                            ．Design & Utility — Beautiful to look at, reliable to use, built to last. <br />
+                            ．Sustainability & Responsibility — Reduced packaging, fair supply chains, kinder choices for the planet and our partners <br />
                             </p>
                         </div>
                     </div>
@@ -63,19 +63,19 @@ function About(){
             {/* End about 2 */}
             
             {/* Start about 3 */}
-            <Hero color="#077A7D">
-                    <div id="container" className="container-mid flex justify-center items-center text-[#F5EEDD]">
+            <Hero color="var(--primary-color)">
+                    <div id="container" className="container-mid flex justify-center items-center text-[var(--quaternary-color)]">
                         <div id="row" className="grid grid-cols-2 gap-rwd items-center max-md:grid-cols-1">
                             <div id="about-preview" data-aos='fade-right' data-aos-duration='1300' data-aos-offset='300'>
-                                <h3 id="title" className="text-[32px] font-bold mt-10 mb-6 flex items-center">Title</h3>
-                                <p id="para" className="text-[16px] mb-6 text-justify leading-loose">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia ratione ex corporis nisi nulla provident corrupti commodi harum, eligendi dicta voluptatibus odio nemo quas? Temporibus quia nisi voluptatibus similique quidem.
-                                    Voluptatum nihil earum quos beatae quidem, provident corporis eligendi ex nemo laboriosam, unde deleniti. Fuga eius et iste eveniet dicta, inventore voluptatibus labore corporis odio velit? Rerum quisquam culpa fuga.
-                                    Quia eum adipisci at facilis laborum incidunt nulla unde ab pariatur quis vero impedit cupiditate, obcaecati, perferendis ipsum voluptate consequuntur a ut dolorum? Cumque cupiditate minima natus quos voluptas dolor!
+                                <h3 id="title" className="text-3xl font-bold mt-10 mb-6 flex items-center">How We Serve You</h3>
+                                <p id="para" className="mb-6 text-justify leading-loose">
+                                    ．Curation Process — Try → test → compare → list, with every step documented. <br />
+                                    ．Fast Fulfillment — Local logistics, multiple pickup/delivery options, real-time tracking. <br />
+                                    ．Caring After-Sales — Dedicated support, fair return & exchange policies—issues resolved, not ignored. <br />
                                 </p>
                             </div>
                             <div data-aos='zoom-in'  data-aos-duration='1000' data-aos-offset='300'>
-                                <ImgContainer img={'hunter'}/>
+                                <ImgContainer img={'about3'}/>
                             </div>
                         </div>
                     </div>

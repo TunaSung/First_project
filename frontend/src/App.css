@@ -12,6 +12,9 @@ Globel;
     body{
         @apply font-['Arial']
     }
+    button{
+        @apply cursor-pointer
+    }
 }
 
 @theme {
