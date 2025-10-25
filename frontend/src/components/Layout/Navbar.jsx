@@ -20,7 +20,9 @@ function Navbar() {
     return (
     <div id="navbar" className="w-full py-2 bg-[var(--quaternary-color)] flex items-center z-10">
             <div id="container" className="container-mid flex items-center justify-between">
-                <Link to="/" id="brand" className="w-20 aspect-square bg-cover-set" style={{backgroundImage: "url(/images/Logo.png)"}}/>
+                <Link to="/" id="brand" className="w-20 aspect-square">
+                    <img className="w-full h-full inset-0" src="/images/Logo.png" alt="logo" />
+                </Link>
 
                 {/* 漢堡選單：小於 md 顯示 */}
                 <div className="md:hidden">
