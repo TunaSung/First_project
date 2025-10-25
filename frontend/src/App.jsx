@@ -71,7 +71,6 @@ function App() {
     // Suspense 用來處理動態載入組件的 fallback，當組件還沒有載入完成時顯示 loading 的樣式
     <Router>
       <ScrollToTop />
-      <DynamicNavbar />
       <Suspense fallback={<div className="w-full text-center my-25"> 
                     <l-dot-stream
                     size="60"
@@ -79,6 +78,7 @@ function App() {
                     color="black" 
                     ></l-dot-stream>
                 </div>}>
+        <DynamicNavbar />
         <Routes>
           <Route path="/" element={<Home />} /> 
           <Route path="/about" element={<About />} />
@@ -88,8 +88,8 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/event" element={<Event />} />
         </Routes>
+        <Footer />
       </Suspense>
-      <Footer />
     </Router>
   )
 }
