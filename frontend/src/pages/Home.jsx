@@ -78,9 +78,9 @@ function Home(){
             {/* End hot item */}
 
             {/* Start VIP */}
-            <div className="w-full bg-[url('/images/vip3.png')] bg-cover-set">
+            <div className="w-full bg-[url('/images/vip3.webp')] bg-cover-set">
                 <div id="container" data-aos="flip-up" data-aos-offset='400' className="container-mid flex justify-center items-center py-30">
-                    <div id="vip-bg" className="w-[70%] aspect-[5/3] shadow-lg flex justify-center items-end pb-15 max-md:pb-8 rounded-lg bg-[url('/images/vip2.jpg')] bg-cover-set">
+                    <div id="vip-bg" className="w-[70%] aspect-[5/3] shadow-lg flex justify-center items-end pb-15 max-md:pb-8 rounded-lg bg-[url('/images/vip2.webp')] bg-cover-set">
                         <Link to='/sign-in'>
                             <Btn text="Become a member"/>
                         </Link>

@@ -2,7 +2,7 @@ function ImgContainer(props){
     return(
         <div id="img_container" className="relative pt-[75%] min-w-75">
             <div id="img" className="absolute inset-0 bg-cover-set "
-            style={{ backgroundImage: `url(/images/${props.img}.png)`}}></div>
+            style={{ backgroundImage: `url(/images/${props.img}.webp)`}}></div>
             {console.log(props.img)}
         </div>
     )

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 function ProductCard({id, name, price, img, stock, sales}){
-    const defaultImg = '/images/imgExample.jpg';
+    const defaultImg = '/images/imgExample.webp';
     return (
         <Link to={`/product/${id}`} className="flex">
             <div id="product" className="border rounded-lg bg-[var(--primary-color)] mx-auto w-58 max-xs:scale-75 max-xxs:scale-70 aspect-[6/7] hover:shadow-xl">

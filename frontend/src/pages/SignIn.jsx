@@ -45,7 +45,7 @@ function SignIn(){
                     <motion.div id="img" 
                     animate={{x: isClick ? '-100%' : '0%',y:'0%'} }
                     transition={{ duration: 1.2, ease: "easeInOut" }}
-                    className={`w-1/2 order-2 bg-cover-set bg-[url('/images/sign.png')]`} ></motion.div>
+                    className={`w-1/2 order-2 bg-cover-set bg-[url('/images/sign.webp')]`} ></motion.div>
                     {/* End img side */}
 
                     {/* Start change btn */}

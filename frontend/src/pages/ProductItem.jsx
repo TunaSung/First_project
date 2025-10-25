@@ -65,7 +65,7 @@ function ProductItem() {
     });
   };
 
-  const defaultImg = "/images/imgExample.jpg";
+  const defaultImg = "/images/imgExample.webp";
 
   const formattedPrice = useMemo(() => {
     if (!product?.price && product?.price !== 0) return "";

@@ -5,7 +5,7 @@ function Event(){
     const { state } = useLocation();
     // 如果沒帶state，就避免直接讀undefined
     const {title, description, img, startDate, endDate} = state || {};
-    const defaultImg = '/images/winter.jpg';
+    const defaultImg = '/images/winter.webp';
 
     return(
     <div id="event" className="bg-[var(--primary-color)]">
@@ -18,7 +18,7 @@ function Event(){
                 {/* Start img */}
                 {/* <img src={img} className="w-200 mt-15 mb-5" /> */}
                 <div id="img" 
-                    className="rounded-md bg-cover-set w-200 aspect-[6/3] mt-15 mb-5  "
+                    className="rounded-md bg-cover-set w-200 aspect-[6/3] mt-15 mb-5"
                     style={{backgroundImage: `url(${img}), url(${defaultImg})`}}/>
                 {/* End img */}
                     

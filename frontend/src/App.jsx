@@ -71,7 +71,7 @@ function App() {
     // Suspense 用來處理動態載入組件的 fallback，當組件還沒有載入完成時顯示 loading 的樣式
     <Router>
       <ScrollToTop />
-      <Suspense fallback={<div className="w-full text-center my-25"> 
+      <Suspense fallback={<div className="w-screen h-screen flex justify-center items-center text-center my-25"> 
                     <l-dot-stream
                     size="60"
                     speed="2.5"
